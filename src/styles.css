@@ -1,0 +1,376 @@
+:root {
+  --bg: #faf8f5;
+  --surface: #ffffff;
+  --border: #ddd6cc;
+  --text: #2b2620;
+  --text-muted: #6b6357;
+  --accent: #2f6f4f;
+  --accent-contrast: #ffffff;
+  --breakfast: #e4a11b;
+  --lunch: #2f6f4f;
+  --dinner: #b3541e;
+  --snack: #6a4c93;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.app__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.app__header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.cart-button {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cart-button:focus-visible {
+  outline: 3px solid #1a3d2b;
+  outline-offset: 2px;
+}
+
+.cart-button__count {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  font-weight: 700;
+}
+
+.filters {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.filters__group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.filter-chip {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.filter-chip--active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.filter-chip--bedtime {
+  font-weight: 600;
+}
+
+.filter-chip:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #1a3d2b;
+  outline-offset: 2px;
+}
+
+.meal-card-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.meal-card-tile {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.meal-card-tile__body {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 0.9rem;
+  cursor: pointer;
+  flex: 1;
+  color: inherit;
+  font: inherit;
+}
+
+.meal-card-tile__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.4rem;
+}
+
+.meal-card-tile__name {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.meal-type-badge {
+  display: inline-block;
+  width: fit-content;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  color: white;
+}
+
+.meal-type-badge--breakfast {
+  background: var(--breakfast);
+}
+.meal-type-badge--lunch {
+  background: var(--lunch);
+}
+.meal-type-badge--dinner {
+  background: var(--dinner);
+}
+.meal-type-badge--snack {
+  background: var(--snack);
+}
+
+.meal-card-tile__time {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0.25rem 0 0.5rem;
+}
+
+.meal-card-tile__macros {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.4rem;
+  margin: 0;
+}
+
+.meal-card-tile__macros dt {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.meal-card-tile__macros dd {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.meal-card-tile__select {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+
+.detail-view {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0;
+  margin-bottom: 0.75rem;
+}
+
+.detail-view__time {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.detail-view__tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.tag-pill {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.75rem;
+}
+
+.select-toggle {
+  margin-top: 0.5rem;
+  border: 1px solid var(--accent);
+  background: var(--surface);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+}
+
+.select-toggle--active {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.ingredients-list,
+.steps-list {
+  padding-left: 1.25rem;
+}
+
+.ingredient-section {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.nutrition-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.nutrition-table th,
+.nutrition-table td {
+  text-align: left;
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.confidence-flag {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+}
+
+.confidence-flag--verified {
+  background: #dcefe2;
+  color: #1a5c34;
+}
+
+.confidence-flag--estimated {
+  background: #fdf0d5;
+  color: #8a5a00;
+}
+
+.cooks-notes {
+  background: var(--bg);
+  border-left: 3px solid var(--accent);
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.4rem;
+}
+
+.grocery-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(420px, 100%);
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  overflow-y: auto;
+  z-index: 20;
+}
+
+.grocery-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.grocery-totals ul {
+  list-style: none;
+  padding: 0;
+}
+
+.target-note {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.grocery-section h4 {
+  margin-bottom: 0.25rem;
+}
+
+@media (max-width: 480px) {
+  .meal-card-tile__macros {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #1c1a17;
+    --surface: #262320;
+    --border: #423d36;
+    --text: #f1ede6;
+    --text-muted: #b3aa9c;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #1c1a17;
+  --surface: #262320;
+  --border: #423d36;
+  --text: #f1ede6;
+  --text-muted: #b3aa9c;
+  color-scheme: dark;
+}

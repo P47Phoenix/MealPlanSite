@@ -1,0 +1,202 @@
+[
+ {
+  "cat": "breakfast",
+  "name": "Greek Yogurt Power Bowl",
+  "desc": "255 g nonfat Greek yogurt, 1 cup blueberries, 1 tbsp chia, 1 oz almonds.",
+  "kcal": 456,
+  "protein": 35.1,
+  "sodium": 94,
+  "satfat": 1.5,
+  "note": null
+ },
+ {
+  "cat": "breakfast",
+  "name": "Overnight Oats & Whey",
+  "desc": "40 g oats soaked in 1 cup skim milk with ¾ scoop whey isolate, ½ cup blueberries, 1 tbsp chia. Build the night before.",
+  "kcal": 416,
+  "protein": 34.8,
+  "sodium": 142,
+  "satfat": 0.9,
+  "note": null
+ },
+ {
+  "cat": "breakfast",
+  "name": "Egg Scramble & Toast",
+  "desc": "2 whole eggs + 4 whites scrambled in ½ tbsp olive oil with wilted spinach, 2 slices low-sodium toast.",
+  "kcal": 446,
+  "protein": 36.7,
+  "sodium": 559,
+  "satfat": 4.5,
+  "note": "Butter is where the saturated fat goes — use the oil instead."
+ },
+ {
+  "cat": "breakfast",
+  "name": "Veggie Egg White Omelette",
+  "desc": "6 egg whites folded over bell pepper and onion, 1 slice low-sodium toast.",
+  "kcal": 286,
+  "protein": 27.1,
+  "sodium": 410,
+  "satfat": 1.1,
+  "note": "The lowest-fat breakfast on the deck — nearly all whites, no yolks."
+ },
+ {
+  "cat": "breakfast",
+  "name": "Cottage Cheese Fruit Bowl",
+  "desc": "1 cup no-salt-added cottage cheese, banana, blueberries, ½ oz walnuts.",
+  "kcal": 419,
+  "protein": 28.0,
+  "sodium": 62,
+  "satfat": 3.0,
+  "note": null
+ },
+ {
+  "cat": "lunch",
+  "name": "Roast Chicken over Greens",
+  "desc": "150 g roast chicken, 2 cups mixed greens, cherry tomatoes, olive oil & lemon, a baked sweet potato.",
+  "kcal": 500,
+  "protein": 53.1,
+  "sodium": 130,
+  "satfat": 3.4,
+  "note": null
+ },
+ {
+  "cat": "lunch",
+  "name": "No-Salt Tuna Salad",
+  "desc": "1½ cans no-salt-added tuna bound with Greek yogurt instead of mayo, over greens, one slice low-sodium toast, an apple.",
+  "kcal": 436,
+  "protein": 44.5,
+  "sodium": 187,
+  "satfat": 1.6,
+  "note": null
+ },
+ {
+  "cat": "lunch",
+  "name": "Chickpea Penne Salad + Chicken",
+  "desc": "57 g dry Banza penne, cooked and chilled, 120 g chicken, cherry tomatoes, basil, olive oil and red wine vinegar.",
+  "kcal": 569,
+  "protein": 53.4,
+  "sodium": 131,
+  "satfat": 3.1,
+  "note": null
+ },
+ {
+  "cat": "lunch",
+  "name": "Salmon & Quinoa Bowl",
+  "desc": "150 g salmon, 1 cup quinoa, mixed greens, cherry tomatoes, olive oil.",
+  "kcal": 634,
+  "protein": 44.0,
+  "sodium": 124,
+  "satfat": 5.1,
+  "note": null
+ },
+ {
+  "cat": "lunch",
+  "name": "Turkey & Sweet Potato Bowl",
+  "desc": "120 g roasted turkey breast, a baked sweet potato, mixed greens, olive oil.",
+  "kcal": 414,
+  "protein": 39.8,
+  "sodium": 129,
+  "satfat": 2.5,
+  "note": null
+ },
+ {
+  "cat": "dinner",
+  "name": "Roast Chicken, Herb Potatoes & Green Beans",
+  "desc": "150 g roast chicken, one russet roasted in olive oil with rosemary and garlic, 1½ cups green beans.",
+  "kcal": 596,
+  "protein": 56.7,
+  "sodium": 92,
+  "satfat": 3.5,
+  "note": "Roast extra — 350 g cooked covers two lunches this week."
+ },
+ {
+  "cat": "dinner",
+  "name": "Chickpea Penne Pomodoro + Chicken",
+  "desc": "85 g dry Banza penne, ¾ cup no-salt-added crushed tomatoes, 120 g shredded chicken, garlic, basil, 1 tbsp parmesan.",
+  "kcal": 718,
+  "protein": 62.8,
+  "sodium": 263,
+  "satfat": 4.0,
+  "note": "Go light on salting the pasta water — pasta absorbs more than you'd think."
+ },
+ {
+  "cat": "dinner",
+  "name": "Baked Salmon, Quinoa & Asparagus",
+  "desc": "150 g salmon with lemon and dill, 1 cup quinoa, 1½ cups roasted asparagus.",
+  "kcal": 725,
+  "protein": 48.3,
+  "sodium": 146,
+  "satfat": 6.2,
+  "note": "Cook extra salmon — the leftover becomes tomorrow's lunch bowl."
+ },
+ {
+  "cat": "dinner",
+  "name": "Fish Tacos & Cabbage-Lime Slaw",
+  "desc": "170 g tilapia, chili-lime rubbed, three corn tortillas, shredded cabbage in lime juice, Greek-yogurt crema.",
+  "kcal": 525,
+  "protein": 59.3,
+  "sodium": 186,
+  "satfat": 2.9,
+  "note": "Corn tortillas run 11 mg sodium each; flour tortillas run 200+."
+ },
+ {
+  "cat": "dinner",
+  "name": "Turkey Cutlets, Sweet Potato Mash & Broccoli",
+  "desc": "150 g fresh turkey breast cutlets, sweet potato mashed with a splash of skim milk, 1½ cups roasted broccoli.",
+  "kcal": 592,
+  "protein": 54.8,
+  "sodium": 255,
+  "satfat": 2.6,
+  "note": "Fresh turkey breast, never deli — deli slices run 700-1,000 mg sodium per 100 g."
+ },
+ {
+  "cat": "dinner",
+  "name": "Garlic-Ginger Chicken Stir-Fry",
+  "desc": "150 g chicken, 2 cups peppers and onion, 1 cup broccoli, over 1 cup rice. Sauce: unsalted stock, ginger, garlic, rice vinegar, 1 tbsp coconut aminos.",
+  "kcal": 748,
+  "protein": 60.9,
+  "sodium": 264,
+  "satfat": 3.5,
+  "note": "One tbsp of aminos is 90 mg sodium; the same amount of soy sauce would be 900."
+ },
+ {
+  "cat": "dinner",
+  "name": "Chickpea Penne Pesto + Grilled Chicken",
+  "desc": "85 g dry Banza, 130 g grilled chicken, side salad. Homemade pesto: basil, garlic, ½ oz walnuts, 1 tbsp olive oil, 1 tbsp parmesan, lemon.",
+  "kcal": 797,
+  "protein": 67.2,
+  "sodium": 250,
+  "satfat": 5.0,
+  "note": "Homemade pesto is the point — jarred runs 400-500 mg sodium per two tablespoons."
+ },
+ {
+  "cat": "snack",
+  "name": "Bedtime Yogurt, Banana & Oats",
+  "desc": "170 g Greek yogurt, one banana, 20 g raw oats stirred in.",
+  "kcal": 280,
+  "protein": 21.2,
+  "sodium": 62,
+  "satfat": 0.6,
+  "note": "The nightly non-negotiable — see the evidence note on the main plan."
+ },
+ {
+  "cat": "snack",
+  "name": "Bedtime Cottage Cheese, Banana & Oats",
+  "desc": "½ cup no-salt-added cottage cheese, one banana, 20 g oats.",
+  "kcal": 270,
+  "protein": 15.9,
+  "sodium": 31,
+  "satfat": 1.4,
+  "note": null
+ },
+ {
+  "cat": "snack",
+  "name": "Apple & Peanut Butter",
+  "desc": "One apple, 1 tbsp unsalted peanut butter.",
+  "kcal": 191,
+  "protein": 4.0,
+  "sodium": 5,
+  "satfat": 0.7,
+  "note": "Good as an afternoon bridge, not a substitute for the bedtime snack."
+ }
+]
