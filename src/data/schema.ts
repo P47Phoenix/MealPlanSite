@@ -19,6 +19,14 @@ export type IngredientSection =
 export interface Ingredient {
   /** Human-readable ingredient name, e.g. "Greek yogurt (nonfat)". */
   name: string;
+  /**
+   * Canonical store-product name used for grocery-list aggregation, e.g.
+   * "Chicken breast" for a `name` of "Shredded chicken". Should be the raw/
+   * base product with no prep-state adjectives ("cooked", "shredded",
+   * "grilled") and never bundle two distinct products into one entry. Falls
+   * back to `name` when omitted.
+   */
+  shoppingName?: string;
   /** Numeric quantity, e.g. 1, 0.5, 255. */
   quantity: number;
   /** Unit for the quantity, e.g. "g", "cup", "tbsp", "oz", "slice". */

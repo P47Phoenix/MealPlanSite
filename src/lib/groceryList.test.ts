@@ -82,6 +82,33 @@ describe('buildGroceryList - volume unit normalization', () => {
   });
 });
 
+describe('buildGroceryList - shoppingName aggregation', () => {
+  it('merges two differently-named ingredients with the same shoppingName into one line', () => {
+    const cardA = makeCard({
+      id: 'a',
+      name: 'Card A',
+      ingredients: [{ name: 'Shredded chicken', shoppingName: 'Chicken breast', quantity: 120, unit: 'g', section: 'protein' }],
+    });
+    const cardB = makeCard({
+      id: 'b',
+      name: 'Card B',
+      ingredients: [{ name: 'Roast chicken', shoppingName: 'Chicken breast', quantity: 150, unit: 'g', section: 'protein' }],
+    });
+    const list = buildGroceryList([cardA, cardB]);
+    expect(list.protein).toHaveLength(1);
+    expect(list.protein[0].name).toBe('Chicken breast');
+    expect(list.protein[0].quantity).toBe(270);
+  });
+
+  it('falls back to name when shoppingName is omitted', () => {
+    const card = makeCard({
+      ingredients: [{ name: 'Broccoli', quantity: 1, unit: 'cup', section: 'produce' }],
+    });
+    const list = buildGroceryList([card]);
+    expect(list.produce[0].name).toBe('Broccoli');
+  });
+});
+
 describe('buildGroceryList - real card aggregation', () => {
   it('aggregates ingredients across real cards from the dataset', () => {
     const roastChicken = MEAL_CARDS.find((c) => c.id === 'roast-chicken-over-greens')!;
@@ -111,5 +138,17 @@ describe('buildGroceryList - real card aggregation', () => {
       const sorted = [...names].sort((a, b) => a.localeCompare(b));
       expect(names).toEqual(sorted);
     }
+  });
+
+  it('merges chicken-bearing cards into a single Chicken breast line via shoppingName', () => {
+    const roastChickenLunch = MEAL_CARDS.find((c) => c.id === 'roast-chicken-over-greens')!;
+    const chickpeaDinner = MEAL_CARDS.find((c) => c.id === 'chickpea-penne-pomodoro-chicken')!;
+    expect(roastChickenLunch).toBeTruthy();
+    expect(chickpeaDinner).toBeTruthy();
+
+    const list = buildGroceryList([roastChickenLunch, chickpeaDinner]);
+    const chickenLines = list.protein.filter((i) => i.name === 'Chicken breast');
+    expect(chickenLines).toHaveLength(1);
+    expect(chickenLines[0].quantity).toBe(270);
   });
 });

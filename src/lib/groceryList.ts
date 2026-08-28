@@ -61,11 +61,12 @@ export function buildGroceryList(cards: MealCard[]): GroceryList {
 
   for (const card of cards) {
     for (const ing of card.ingredients) {
-      const key = ing.name.trim().toLowerCase();
+      const shoppingName = (ing.shoppingName ?? ing.name).trim();
+      const key = shoppingName.toLowerCase();
       let acc = byKey.get(key);
       if (!acc) {
         acc = {
-          displayName: ing.name.trim(),
+          displayName: shoppingName,
           section: ing.section,
           sourceCards: new Set(),
           quantitiesByUnit: new Map(),
