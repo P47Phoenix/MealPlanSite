@@ -82,7 +82,7 @@ export default function GroceryListView({ selectedCards, onClose }: Props) {
                 <h4>{SECTION_LABELS[section] ?? section}</h4>
                 <ul>
                   {items.map((item) => (
-                    <li key={item.name}>
+                    <li key={`${section}-${item.name}-${item.unit}`}>
                       {item.quantity} {item.unit} {item.name}
                     </li>
                   ))}

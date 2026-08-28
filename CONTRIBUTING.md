@@ -34,6 +34,7 @@ interface MealCard {
 
 interface Ingredient {
   name: string;
+  shoppingName?: string;         // optional; see "Ingredient shoppingName" below
   quantity: number;
   unit: string;                 // "g", "cup", "tbsp", "oz", "slice", "each", ...
   section: 'produce' | 'protein' | 'dairy' | 'pantry' | 'grains' | 'bakery' | 'other';
@@ -53,8 +54,27 @@ interface NutritionInfo {
 }
 ```
 
-All fields are required. `cooksNotes` is `null` (not omitted) when there is no
-note.
+All fields are required except `shoppingName`. `cooksNotes` is `null` (not
+omitted) when there is no note.
+
+### Ingredient `shoppingName`
+
+The grocery list aggregates ingredients by `shoppingName` when present,
+falling back to `name` otherwise. Set `shoppingName` whenever a recipe's
+`name` differs from the plain product you'd actually buy at the store:
+
+- Strip prep-state adjectives: "Roast chicken", "Shredded chicken", "Grilled
+  chicken", "Cooked chicken" → `shoppingName: 'Chicken breast'`. "Quinoa
+  (cooked)" / "Quinoa (dry)" → `shoppingName: 'Quinoa'`.
+- Keep a brand name if it's the actual product to buy: "Banza chickpea penne
+  (dry)" → `shoppingName: 'Banza chickpea penne'` (drops the prep-state
+  parenthetical, keeps the brand).
+- Do **not** set `shoppingName` — or merge — for genuinely different store
+  products, e.g. deli-style "Roasted turkey breast" vs. raw "Fresh turkey
+  breast cutlets".
+- Never bundle two distinct products into a single ingredient entry (e.g.
+  "Bell peppers and onion" as one line) — give each product its own
+  `Ingredient` object so it can be shopped and aggregated correctly.
 
 ### Tags
 

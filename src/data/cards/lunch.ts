@@ -9,7 +9,7 @@ export const lunchCards: MealCard[] = [
     prepTimeMinutes: 10,
     cookTimeMinutes: 40,
     ingredients: [
-      { name: 'Roast chicken', quantity: 150, unit: 'g', section: 'protein' },
+      { name: 'Roast chicken', shoppingName: 'Chicken breast', quantity: 150, unit: 'g', section: 'protein' },
       { name: 'Mixed greens', quantity: 2, unit: 'cup', section: 'produce' },
       { name: 'Cherry tomatoes', quantity: 0.5, unit: 'cup', section: 'produce' },
       { name: 'Olive oil', quantity: 1, unit: 'tbsp', section: 'pantry' },
@@ -40,7 +40,7 @@ export const lunchCards: MealCard[] = [
     cookTimeMinutes: 0,
     ingredients: [
       { name: 'No-salt-added canned tuna', quantity: 1.5, unit: 'can', section: 'protein' },
-      { name: 'Nonfat Greek yogurt', quantity: 2, unit: 'tbsp', section: 'dairy' },
+      { name: 'Nonfat Greek yogurt', shoppingName: 'Greek yogurt', quantity: 2, unit: 'tbsp', section: 'dairy' },
       { name: 'Mixed greens', quantity: 2, unit: 'cup', section: 'produce' },
       { name: 'Low-sodium bread', quantity: 1, unit: 'slice', section: 'bakery' },
       { name: 'Apple', quantity: 1, unit: 'each', section: 'produce' },
@@ -68,8 +68,8 @@ export const lunchCards: MealCard[] = [
     prepTimeMinutes: 10,
     cookTimeMinutes: 12,
     ingredients: [
-      { name: 'Banza chickpea penne (dry)', quantity: 57, unit: 'g', section: 'grains' },
-      { name: 'Cooked chicken', quantity: 120, unit: 'g', section: 'protein' },
+      { name: 'Banza chickpea penne (dry)', shoppingName: 'Banza chickpea penne', quantity: 57, unit: 'g', section: 'grains' },
+      { name: 'Cooked chicken', shoppingName: 'Chicken breast', quantity: 120, unit: 'g', section: 'protein' },
       { name: 'Cherry tomatoes', quantity: 0.5, unit: 'cup', section: 'produce' },
       { name: 'Basil', quantity: 0.25, unit: 'cup', section: 'produce' },
       { name: 'Olive oil', quantity: 1, unit: 'tbsp', section: 'pantry' },
@@ -100,7 +100,7 @@ export const lunchCards: MealCard[] = [
     cookTimeMinutes: 20,
     ingredients: [
       { name: 'Salmon', quantity: 150, unit: 'g', section: 'protein' },
-      { name: 'Quinoa (cooked)', quantity: 1, unit: 'cup', section: 'grains' },
+      { name: 'Quinoa (cooked)', shoppingName: 'Quinoa', quantity: 1, unit: 'cup', section: 'grains' },
       { name: 'Mixed greens', quantity: 2, unit: 'cup', section: 'produce' },
       { name: 'Cherry tomatoes', quantity: 0.5, unit: 'cup', section: 'produce' },
       { name: 'Olive oil', quantity: 1, unit: 'tbsp', section: 'pantry' },

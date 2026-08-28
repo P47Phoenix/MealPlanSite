@@ -9,7 +9,7 @@ export const breakfastCards: MealCard[] = [
     prepTimeMinutes: 5,
     cookTimeMinutes: 0,
     ingredients: [
-      { name: 'Nonfat Greek yogurt', quantity: 255, unit: 'g', section: 'dairy' },
+      { name: 'Nonfat Greek yogurt', shoppingName: 'Greek yogurt', quantity: 255, unit: 'g', section: 'dairy' },
       { name: 'Blueberries', quantity: 1, unit: 'cup', section: 'produce' },
       { name: 'Chia seeds', quantity: 1, unit: 'tbsp', section: 'pantry' },
       { name: 'Almonds', quantity: 1, unit: 'oz', section: 'pantry' },
