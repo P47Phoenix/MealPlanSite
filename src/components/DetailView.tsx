@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { MealCard } from '../data/schema';
 import { tagsByGroup } from '../data/tags';
 import TagChip from './TagChip';
@@ -34,11 +35,29 @@ function NutritionRow({
 }
 
 export default function DetailView({ card, selected, onToggleSelect, onBack }: Props) {
+  const [copied, setCopied] = useState(false);
+
+  function copyLink() {
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      })
+      .catch(() => {});
+  }
+
   return (
     <article className="detail-view">
       <button type="button" className="back-button" onClick={onBack}>
         ← Back to browse
       </button>
+      <button type="button" className="copy-link-button" onClick={copyLink}>
+        Copy link
+      </button>
+      <span aria-live="polite" className="copy-confirmation">
+        {copied ? 'Link copied!' : ''}
+      </span>
       <header className="detail-view__header">
         <span className={`meal-type-badge meal-type-badge--${card.mealType}`}>{card.mealType}</span>
         <h2>{card.name}</h2>

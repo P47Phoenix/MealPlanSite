@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import type { MealCard } from '../data/schema';
 import { buildGroceryList } from '../lib/groceryList';
 
@@ -24,7 +24,18 @@ const SECTION_LABELS: Record<string, string> = {
 };
 
 export default function GroceryListView({ selectedCards, onClose }: Props) {
+  const [copied, setCopied] = useState(false);
   const groceryList = useMemo(() => buildGroceryList(selectedCards), [selectedCards]);
+
+  function copyLink() {
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      })
+      .catch(() => {});
+  }
 
   const totals = useMemo(() => {
     return selectedCards.reduce(
@@ -45,6 +56,12 @@ export default function GroceryListView({ selectedCards, onClose }: Props) {
     <div className="grocery-panel" role="dialog" aria-labelledby="grocery-heading">
       <div className="grocery-panel__header">
         <h2 id="grocery-heading">Grocery list</h2>
+        <button type="button" className="copy-link-button" onClick={copyLink}>
+          Copy link
+        </button>
+        <span aria-live="polite" className="copy-confirmation">
+          {copied ? 'Link copied!' : ''}
+        </span>
         <button type="button" className="close-button" onClick={onClose} aria-label="Close grocery list">
           ✕
         </button>

@@ -301,6 +301,8 @@ input:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .close-button {
@@ -308,6 +310,25 @@ input:focus-visible {
   border: none;
   font-size: 1.1rem;
   cursor: pointer;
+}
+
+.copy-link-button {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.copy-link-button:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.copy-confirmation {
+  font-size: 0.8rem;
+  color: var(--text-muted);
 }
 
 .grocery-totals ul {

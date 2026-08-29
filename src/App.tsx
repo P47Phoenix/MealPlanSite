@@ -1,8 +1,9 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { MEAL_CARDS } from './data/cards';
 import type { MealType } from './data/schema';
 import type { TagId } from './data/tags';
 import { buildHaystackMap, filterCards, facetCounts } from './lib/search';
+import { decodeState, stateToUrl } from './lib/shareState';
 import MealCardTile from './components/MealCardTile';
 import Filters from './components/Filters';
 import SearchBox from './components/SearchBox';
@@ -17,15 +18,36 @@ type View = 'browse' | 'detail';
 
 const PANEL_ID = 'meal-grid-panel';
 
+const VALID_IDS = new Set(MEAL_CARDS.map((c) => c.id));
+
 export default function App() {
-  const [view, setView] = useState<View>('browse');
-  const [activeCardId, setActiveCardId] = useState<string | null>(null);
-  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
-  const [query, setQuery] = useState('');
-  const [mealType, setMealType] = useState<MealType | 'all'>('all');
-  const [activeTags, setActiveTags] = useState<TagId[]>([]);
-  const [groceryOpen, setGroceryOpen] = useState(false);
+  const initialRef = useRef<ReturnType<typeof decodeState> | null>(null);
+  if (initialRef.current === null) {
+    initialRef.current = decodeState(window.location.search, VALID_IDS);
+  }
+  const initial = initialRef.current;
+
+  const [view, setView] = useState<View>(initial.view ?? 'browse');
+  const [activeCardId, setActiveCardId] = useState<string | null>(initial.activeCardId ?? null);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(initial.selectedIds ?? new Set());
+  const [query, setQuery] = useState(initial.query ?? '');
+  const [mealType, setMealType] = useState<MealType | 'all'>(initial.mealType ?? 'all');
+  const [activeTags, setActiveTags] = useState<TagId[]>(initial.activeTags ?? []);
+  const [groceryOpen, setGroceryOpen] = useState(initial.groceryOpen ?? false);
   const searchRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const url = stateToUrl({
+      query,
+      mealType,
+      activeTags,
+      selectedIds,
+      view,
+      activeCardId,
+      groceryOpen,
+    });
+    window.history.replaceState(null, '', url);
+  }, [query, mealType, activeTags, selectedIds, view, activeCardId, groceryOpen]);
 
   const haystack = useMemo(() => buildHaystackMap(MEAL_CARDS), []);
   const criteria = useMemo(() => ({ query, mealType, tags: activeTags }), [query, mealType, activeTags]);

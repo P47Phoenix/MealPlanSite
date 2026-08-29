@@ -1,10 +1,16 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import App from './App';
 import { MEAL_CARDS } from './data/cards';
 import { filterCards } from './lib/search';
 
 const TOTAL = MEAL_CARDS.length;
+
+beforeEach(() => {
+  // App syncs state into the URL via history.replaceState; reset it between
+  // tests so one test's filters/selections don't leak into the next render.
+  window.history.replaceState(null, '', window.location.pathname);
+});
 
 function resultText(): string {
   return document.getElementById('result-count')!.textContent ?? '';
