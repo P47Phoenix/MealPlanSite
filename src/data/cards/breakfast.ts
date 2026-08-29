@@ -145,4 +145,32 @@ export const breakfastCards: MealCard[] = [
     },
     cooksNotes: null,
   },
+  {
+    id: 'eggs-chicken-sausage-rye-toast',
+    name: 'Eggs, Low-Sodium Chicken Sausage & Rye Toast',
+    mealType: 'breakfast',
+    tags: ['high-protein'],
+    prepTimeMinutes: 5,
+    cookTimeMinutes: 12,
+    ingredients: [
+      { name: 'Whole eggs', quantity: 3, unit: 'each', section: 'protein' },
+      { name: 'Low-sodium chicken sausage links', shoppingName: 'Low-sodium chicken sausage', quantity: 3, unit: 'each', section: 'protein' },
+      { name: 'Rye bread', quantity: 2, unit: 'slice', section: 'bakery' },
+    ],
+    steps: [
+      'Heat a nonstick skillet over medium heat and cook the chicken sausage links, turning occasionally, until browned and cooked through, internal temp 165°F, about 8-10 minutes.',
+      'While the sausage cooks, toast the 2 slices of rye bread to your desired doneness.',
+      'Whisk the 3 eggs together in a bowl.',
+      'Wipe out the skillet, reduce heat to medium-low, and scramble the eggs until just set, about 3-4 minutes.',
+      'Plate the scrambled eggs with the sausage links and rye toast.',
+    ],
+    nutrition: {
+      calories: { value: 517, confidence: 'verified' },
+      proteinG: { value: 38.4, confidence: 'verified' },
+      sodiumMg: { value: 586, confidence: 'verified' },
+      satFatG: { value: 7.7, confidence: 'verified' },
+      carbsG: { value: 32.5, confidence: 'estimated' },
+    },
+    cooksNotes: 'Look for a low-sodium chicken sausage specifically (e.g. Jimmy Dean Low Sodium Chicken Breakfast Links run ~58 mg sodium per link vs. 300+ for regular chicken sausage). Dropped to 3 eggs (from 4) to keep saturated fat under the daily-fraction guideline.',
+  },
 ];

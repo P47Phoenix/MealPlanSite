@@ -54,6 +54,24 @@ describe('validateCard - red meat hard-fail', () => {
     expect(validateCard(pork).some((v) => v.rule === 'red-meat')).toBe(true);
     expect(validateCard(lamb).some((v) => v.rule === 'red-meat')).toBe(true);
   });
+
+  it('does not flag chicken or turkey sausage (poultry exception)', () => {
+    const chickenSausage = baseCard({
+      ingredients: [{ name: 'Chicken sausage', quantity: 90, unit: 'g', section: 'protein' }],
+    });
+    const turkeySausage = baseCard({
+      ingredients: [{ name: 'Turkey sausage links', quantity: 90, unit: 'g', section: 'protein' }],
+    });
+    expect(validateCard(chickenSausage).some((v) => v.rule === 'red-meat')).toBe(false);
+    expect(validateCard(turkeySausage).some((v) => v.rule === 'red-meat')).toBe(false);
+  });
+
+  it('still flags plain/unqualified sausage', () => {
+    const card = baseCard({
+      ingredients: [{ name: 'Sausage links', quantity: 90, unit: 'g', section: 'protein' }],
+    });
+    expect(validateCard(card).some((v) => v.rule === 'red-meat')).toBe(true);
+  });
 });
 
 describe('validateCard - legume hard-fail', () => {

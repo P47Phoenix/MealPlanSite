@@ -36,7 +36,16 @@ when explaining a refusal in plain language), see
 
 Hard fails — refuse and write nothing:
 - **Red meat**: whole-word beef, pork, lamb, bacon, ham, veal, or sausage in
-  the dish concept, any ingredient, or any tag. Refuse.
+  the dish concept, any ingredient, or any tag. Refuse. Exception: "sausage"
+  qualified as chicken or turkey (e.g. "Chicken sausage") is allowed — lean
+  poultry sausage, not the red/processed meat the rule targets. Unqualified
+  "sausage" (implicitly pork) and sausage of any other red-meat animal are
+  still refused. When you do use chicken/turkey sausage, look up a specific
+  **low-sodium** product (e.g. Jimmy Dean Low Sodium Chicken Breakfast
+  Sausage Links, ~58 mg/link) rather than a generic "chicken sausage" figure
+  — regular chicken/turkey sausage commonly runs 700+ mg sodium per serving,
+  which will usually trip the sodium soft flag below. Name the low-sodium
+  product in the ingredient name or `cooksNotes`.
 - **Legumes**: any bean, lentil, chickpea, or garbanzo ingredient, *except*
   Banza chickpea pasta / chickpea penne specifically. Plain chickpeas,
   black beans, lentils, etc. are still refused even in a card that also

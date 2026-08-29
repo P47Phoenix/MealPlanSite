@@ -112,7 +112,18 @@ causes the validator to exit non-zero:
    correct type (see schema above).
 2. **No red meat** — no ingredient, tag, or name may contain "beef", "pork",
    "lamb", "bacon", "ham", "veal", or "sausage" (case-insensitive, whole-word
-   match).
+   match), **except** "sausage" qualified as "chicken" or "turkey" (e.g.
+   "Chicken sausage", "Turkey sausage links") — those are lean poultry
+   products and are allowed. Unqualified "sausage" is still a hard fail
+   (implicitly pork), as is sausage of any other red-meat animal.
+   Chicken/turkey sausage still runs high in sodium in most standard
+   products (700+ mg per serving is common) — **prefer a low-sodium chicken
+   or turkey sausage product specifically** (e.g. Jimmy Dean Low Sodium
+   Chicken Breakfast Sausage Links, ~58 mg sodium per link) when adding a
+   sausage-based card, look up that specific product's own nutrition panel
+   rather than a generic "chicken sausage" figure, and name the low-sodium
+   product in the ingredient name and/or `cooksNotes` so the choice is
+   explicit rather than assumed.
 3. **No legumes, with one exception** — no ingredient may contain "bean",
    "lentil", "chickpea", or "garbanzo" **unless** it is specifically Banza
    chickpea pasta / chickpea penne (ingredient name contains "Banza" or

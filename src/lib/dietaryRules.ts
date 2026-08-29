@@ -37,6 +37,21 @@ const SEAFOOD_WORDS = [
 
 const TEMP_OR_DONENESS_PATTERN = /(\d+\s*°?\s*[fF]\b|\d+\s*°?\s*[cC]\b|degrees|opaque|flakes easily|internal temp|fully cooked|ready to eat)/i;
 
+const POULTRY_WORDS = ['chicken', 'turkey'];
+
+/**
+ * "Sausage" is only a red-meat hard-fail when it's not qualified as a
+ * poultry product. "Chicken sausage" / "turkey sausage" are lean poultry
+ * products, not the red/processed meat the rule targets — but plain
+ * "sausage" (unqualified, implicitly pork) and any other red-meat word are
+ * still hard fails.
+ */
+function isPoultrySausageException(text: string, word: string): boolean {
+  if (word !== 'sausage') return false;
+  const lower = text.toLowerCase();
+  return POULTRY_WORDS.some((p) => lower.includes(p));
+}
+
 function isBanzaException(card: MealCard, ingredientName: string): boolean {
   const lower = ingredientName.toLowerCase();
   if (!LEGUME_WORDS.some((w) => wordMatch(lower, w))) return false;
@@ -107,6 +122,7 @@ export function checkRedMeat(card: MealCard): Violation[] {
   for (const text of haystacks) {
     for (const word of RED_MEAT_WORDS) {
       if (wordMatch(text, word)) {
+        if (isPoultrySausageException(text, word)) continue;
         violations.push({
           rule: 'red-meat',
           cardId: card.id,

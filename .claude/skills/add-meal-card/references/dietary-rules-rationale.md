@@ -13,6 +13,21 @@ overload risk associated with red and processed meat. This is a firm
 dietary boundary for this dataset, not a taste preference — refuse rather
 than substitute a "leaner cut" workaround.
 
+The one carve-out is chicken or turkey sausage: it's a lean poultry product
+sold and eaten as sausage, not the red/processed meat the rule is aimed at,
+so "Chicken sausage" / "Turkey sausage links" are allowed. Unqualified
+"sausage" (implicitly pork) is still refused, as is sausage from any other
+red-meat animal.
+
+That carve-out isn't a free pass on sodium, though: standard chicken/turkey
+sausage products commonly run 700+ mg sodium per serving, which works
+against the same cirrhosis-driven sodium ceiling behind the soft-flag rule
+below. Prefer a specific low-sodium chicken or turkey sausage product (look
+up its own manufacturer panel — e.g. Jimmy Dean Low Sodium Chicken
+Breakfast Sausage Links run about 58 mg per link, versus 300+ mg for a
+regular chicken sausage link) and name that specific product rather than
+using a generic "chicken sausage" nutrition figure.
+
 ## No legumes, except Banza chickpea pasta / chickpea penne
 
 Beans, lentils, and whole chickpeas are excluded — likely for
