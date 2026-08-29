@@ -1,4 +1,5 @@
 import type { MealCard, IngredientSection } from '../data/schema';
+import { PURCHASE_UNITS, type PurchaseUnitEntry } from '../data/purchaseUnits';
 
 /** One aggregated line item on the grocery list. */
 export interface GroceryItem {
@@ -10,6 +11,8 @@ export interface GroceryItem {
   unit: string;
   /** Names of the cards that contributed to this item. */
   sourceCards: string[];
+  /** Store-purchasable quantity, when the ingredient has a known package size. */
+  purchase?: { quantity: number; unit: string };
 }
 
 /** Grocery list grouped by section, each section's items sorted alphabetically. */
@@ -31,6 +34,41 @@ const VOLUME_TO_TSP: Record<string, number> = {
   tbsp: 3,
   cup: 48,
 };
+
+/**
+ * Converts a raw aggregated quantity/unit into a store-purchasable quantity,
+ * given the package-size entry for that ingredient (or `undefined` if the
+ * ingredient has no known purchase mapping). Supports exact-unit matches and
+ * conversion within the tsp/tbsp/cup volume family; any other unit mismatch
+ * (e.g. mass vs. count) returns `undefined` since there is no general
+ * unit-conversion engine. A non-positive raw quantity returns a zero
+ * purchase quantity rather than `undefined`.
+ */
+export function computePurchaseQuantity(
+  rawQuantity: number,
+  rawUnit: string,
+  entry: PurchaseUnitEntry | undefined,
+): { quantity: number; unit: string } | undefined {
+  if (!entry) return undefined;
+
+  if (rawQuantity <= 0) return { quantity: 0, unit: entry.unitLabel };
+
+  const normalizedRawUnit = rawUnit.trim().toLowerCase();
+  const normalizedPackageUnit = entry.packageUnit.trim().toLowerCase();
+
+  let rawInPackageUnit: number | undefined;
+  if (normalizedRawUnit === normalizedPackageUnit) {
+    rawInPackageUnit = rawQuantity;
+  } else if (normalizedRawUnit in VOLUME_TO_TSP && normalizedPackageUnit in VOLUME_TO_TSP) {
+    const rawTsp = rawQuantity * VOLUME_TO_TSP[normalizedRawUnit];
+    rawInPackageUnit = rawTsp / VOLUME_TO_TSP[normalizedPackageUnit];
+  }
+
+  if (rawInPackageUnit === undefined) return undefined;
+
+  const quantity = Math.ceil(rawInPackageUnit / entry.packageSize);
+  return { quantity, unit: entry.unitLabel };
+}
 
 function normalizeVolume(totalTsp: number): { quantity: number; unit: string } {
   // Prefer the largest unit that gives a "clean-ish" result.
@@ -103,11 +141,13 @@ export function buildGroceryList(cards: MealCard[]): GroceryList {
         quantity = Math.round(qty * 100) / 100;
         unit = unitKey;
       }
+      const purchaseEntry = PURCHASE_UNITS[acc.displayName.trim().toLowerCase()];
       list[acc.section].push({
         name: acc.displayName,
         quantity,
         unit,
         sourceCards: Array.from(acc.sourceCards).sort(),
+        purchase: computePurchaseQuantity(quantity, unit, purchaseEntry),
       });
     }
   }

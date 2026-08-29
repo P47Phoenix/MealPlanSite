@@ -331,6 +331,23 @@ input:focus-visible {
   color: var(--text-muted);
 }
 
+.grocery-panel__controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.grocery-source-list {
+  list-style: none;
+  padding-left: 1rem;
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
 .grocery-totals ul {
   list-style: none;
   padding: 0;
