@@ -1,36 +1,40 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { MEAL_CARDS } from './data/cards';
 import type { MealType } from './data/schema';
+import type { TagId } from './data/tags';
+import { buildHaystackMap, filterCards, facetCounts } from './lib/search';
 import MealCardTile from './components/MealCardTile';
 import Filters from './components/Filters';
+import SearchBox from './components/SearchBox';
+import MealTypeTabs from './components/MealTypeTabs';
+import ActiveFilters from './components/ActiveFilters';
+import ResultCount from './components/ResultCount';
+import EmptyState from './components/EmptyState';
 import DetailView from './components/DetailView';
 import GroceryListView from './components/GroceryListView';
 
 type View = 'browse' | 'detail';
 
+const PANEL_ID = 'meal-grid-panel';
+
 export default function App() {
   const [view, setView] = useState<View>('browse');
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [query, setQuery] = useState('');
   const [mealType, setMealType] = useState<MealType | 'all'>('all');
-  const [activeTags, setActiveTags] = useState<string[]>([]);
+  const [activeTags, setActiveTags] = useState<TagId[]>([]);
   const [groceryOpen, setGroceryOpen] = useState(false);
+  const searchRef = useRef<HTMLInputElement>(null);
 
-  const allTags = useMemo(() => {
-    const tagSet = new Set<string>();
-    for (const card of MEAL_CARDS) {
-      for (const tag of card.tags) tagSet.add(tag);
-    }
-    return Array.from(tagSet).sort();
-  }, []);
+  const haystack = useMemo(() => buildHaystackMap(MEAL_CARDS), []);
+  const criteria = useMemo(() => ({ query, mealType, tags: activeTags }), [query, mealType, activeTags]);
 
-  const filteredCards = useMemo(() => {
-    return MEAL_CARDS.filter((card) => {
-      if (mealType !== 'all' && card.mealType !== mealType) return false;
-      if (activeTags.length > 0 && !activeTags.every((t) => card.tags.includes(t))) return false;
-      return true;
-    });
-  }, [mealType, activeTags]);
+  const filteredCards = useMemo(
+    () => filterCards(MEAL_CARDS, criteria, haystack),
+    [criteria, haystack],
+  );
+  const facets = useMemo(() => facetCounts(MEAL_CARDS, criteria, haystack), [criteria, haystack]);
 
   const selectedCards = useMemo(
     () => MEAL_CARDS.filter((card) => selectedIds.has(card.id)),
@@ -51,8 +55,21 @@ export default function App() {
     });
   }
 
-  function toggleTag(tag: string) {
+  function toggleTag(tag: TagId) {
     setActiveTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
+  }
+
+  function clearAll() {
+    setQuery('');
+    setActiveTags([]);
+    setMealType('all');
+    searchRef.current?.focus();
+  }
+
+  function showAllMealTypes() {
+    setMealType('all');
+    // Land the user on the control that changed.
+    requestAnimationFrame(() => document.getElementById('tab-all')?.focus());
   }
 
   function openDetail(id: string) {
@@ -82,25 +99,46 @@ export default function App() {
       <main>
         {view === 'browse' && (
           <>
-            <Filters
-              mealType={mealType}
-              onMealTypeChange={setMealType}
-              allTags={allTags}
-              activeTags={activeTags}
-              onToggleTag={toggleTag}
-            />
-            <ul className="meal-card-grid">
-              {filteredCards.map((card) => (
-                <MealCardTile
-                  key={card.id}
-                  card={card}
-                  selected={selectedIds.has(card.id)}
-                  onToggleSelect={toggleSelect}
-                  onOpenDetail={openDetail}
+            <SearchBox ref={searchRef} value={query} onChange={setQuery} />
+            <Filters activeTags={activeTags} onToggleTag={toggleTag} facets={facets} />
+            <div className="results-bar">
+              <ResultCount shown={filteredCards.length} total={MEAL_CARDS.length} />
+              <ActiveFilters
+                query={query}
+                mealType={mealType}
+                activeTags={activeTags}
+                onRemoveTag={toggleTag}
+                onClearQuery={() => setQuery('')}
+                onClearMealType={() => setMealType('all')}
+                onClearAll={clearAll}
+              />
+            </div>
+            <MealTypeTabs value={mealType} onChange={setMealType} counts={facets.mealType} panelId={PANEL_ID} />
+            <div role="tabpanel" id={PANEL_ID} aria-labelledby={`tab-${mealType}`} className="meal-grid-panel">
+              {filteredCards.length > 0 ? (
+                <ul className="meal-card-grid">
+                  {filteredCards.map((card) => (
+                    <MealCardTile
+                      key={card.id}
+                      card={card}
+                      selected={selectedIds.has(card.id)}
+                      highlightTags={activeTags}
+                      onToggleSelect={toggleSelect}
+                      onOpenDetail={openDetail}
+                    />
+                  ))}
+                </ul>
+              ) : (
+                <EmptyState
+                  query={query}
+                  mealType={mealType}
+                  activeTags={activeTags}
+                  allCount={facets.mealType.all}
+                  onShowAllMealTypes={showAllMealTypes}
+                  onClearAll={clearAll}
                 />
-              ))}
-            </ul>
-            {filteredCards.length === 0 && <p>No meal cards match the current filters.</p>}
+              )}
+            </div>
           </>
         )}
 

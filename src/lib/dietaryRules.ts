@@ -1,4 +1,5 @@
 import type { MealCard, Ingredient } from '../data/schema';
+import { isTagId, type TagId } from '../data/tags';
 
 /** A single rule violation found on a card or dataset. */
 export interface Violation {
@@ -88,7 +89,19 @@ export function validateSchema(card: Partial<MealCard>): Violation[] {
   if (!['breakfast', 'lunch', 'dinner', 'snack'].includes(card.mealType as string)) {
     push('schema', 'Missing or invalid mealType');
   }
-  if (!Array.isArray(card.tags)) push('schema', 'Missing or invalid tags array');
+  if (!Array.isArray(card.tags)) {
+    push('schema', 'Missing or invalid tags array');
+  } else {
+    const seen = new Set<string>();
+    for (const tag of card.tags as unknown[]) {
+      if (typeof tag !== 'string' || !isTagId(tag)) {
+        push('unknown-tag', `Tag "${String(tag)}" is not in the tag registry (src/data/tags.ts)`);
+        continue;
+      }
+      if (seen.has(tag)) push('duplicate-tag', `Tag "${tag}" appears more than once`);
+      seen.add(tag);
+    }
+  }
   if (typeof card.prepTimeMinutes !== 'number') push('schema', 'Missing or invalid prepTimeMinutes');
   if (typeof card.cookTimeMinutes !== 'number') push('schema', 'Missing or invalid cookTimeMinutes');
   if (!Array.isArray(card.ingredients) || card.ingredients.length === 0) {
@@ -187,7 +200,8 @@ export function validateCard(card: MealCard): Violation[] {
 
 /** Dataset-level check: at least one card must carry the 'bedtime-snack' tag. */
 export function checkBedtimeSnackPresent(cards: MealCard[]): Violation[] {
-  const found = cards.some((c) => c.tags.includes('bedtime-snack'));
+  const required: TagId = 'bedtime-snack';
+  const found = cards.some((c) => c.tags.includes(required));
   if (found) return [];
   return [
     {

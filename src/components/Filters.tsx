@@ -1,48 +1,73 @@
-import type { MealType } from '../data/schema';
+import { useEffect, useState } from 'react';
+import { TAG_GROUPS, TAGS_IN_GROUP_ORDER, type TagId } from '../data/tags';
+import type { FacetCounts } from '../lib/search';
+import TagChip from './TagChip';
 
 interface Props {
-  mealType: MealType | 'all';
-  onMealTypeChange: (value: MealType | 'all') => void;
-  allTags: string[];
-  activeTags: string[];
-  onToggleTag: (tag: string) => void;
+  activeTags: TagId[];
+  onToggleTag: (tag: TagId) => void;
+  facets: FacetCounts;
 }
 
-const MEAL_TYPES: (MealType | 'all')[] = ['all', 'breakfast', 'lunch', 'dinner', 'snack'];
+function useIsNarrow(maxWidth = 480): boolean {
+  const query = `(max-width: ${maxWidth}px)`;
+  const [narrow, setNarrow] = useState(() =>
+    typeof window !== 'undefined' && typeof window.matchMedia === 'function'
+      ? window.matchMedia(query).matches
+      : false,
+  );
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return;
+    const mql = window.matchMedia(query);
+    const handler = (e: MediaQueryListEvent) => setNarrow(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, [query]);
+  return narrow;
+}
 
-export default function Filters({ mealType, onMealTypeChange, allTags, activeTags, onToggleTag }: Props) {
-  return (
-    <fieldset className="filters">
-      <legend>Filter meals</legend>
-      <div className="filters__group" role="radiogroup" aria-label="Filter by meal type">
-        {MEAL_TYPES.map((type) => (
-          <button
-            key={type}
-            type="button"
-            role="radio"
-            aria-checked={mealType === type}
-            className={`filter-chip ${mealType === type ? 'filter-chip--active' : ''}`}
-            onClick={() => onMealTypeChange(type)}
-          >
-            {type}
-          </button>
-        ))}
-      </div>
-      <div className="filters__group" aria-label="Filter by dietary tag">
-        {allTags.map((tag) => (
-          <button
-            key={tag}
-            type="button"
-            aria-pressed={activeTags.includes(tag)}
-            className={`filter-chip ${activeTags.includes(tag) ? 'filter-chip--active' : ''} ${
-              tag === 'bedtime-snack' ? 'filter-chip--bedtime' : ''
-            }`}
-            onClick={() => onToggleTag(tag)}
-          >
-            {tag}
-          </button>
-        ))}
-      </div>
+export default function Filters({ activeTags, onToggleTag, facets }: Props) {
+  const narrow = useIsNarrow();
+
+  const groups = (
+    <fieldset className="filter-panel">
+      <legend className="filter-panel__legend">Filter by attribute</legend>
+      {TAG_GROUPS.map((g) => (
+        <div
+          key={g.id}
+          role="group"
+          aria-labelledby={`tg-${g.id}`}
+          className={`filter-panel__group filter-panel__group--${g.id}`}
+        >
+          <span id={`tg-${g.id}`} className="filter-panel__group-label">
+            {g.label}
+          </span>
+          <div className="filter-panel__chips">
+            {TAGS_IN_GROUP_ORDER[g.id].map((tagId) => (
+              <TagChip
+                key={tagId}
+                tagId={tagId}
+                variant="filter"
+                active={activeTags.includes(tagId)}
+                count={facets.tags[tagId]}
+                disabled={facets.tags[tagId] === 0}
+                onToggle={onToggleTag}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
     </fieldset>
+  );
+
+  if (!narrow) return groups;
+
+  return (
+    <details className="filter-panel__details" open={activeTags.length > 0 || undefined}>
+      <summary className="filter-panel__summary">
+        Filters{activeTags.length > 0 ? ` (${activeTags.length} active)` : ''}
+      </summary>
+      {groups}
+    </details>
   );
 }

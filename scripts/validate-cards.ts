@@ -1,5 +1,6 @@
 import { MEAL_CARDS } from '../src/data/cards';
 import { validateDataset } from '../src/lib/dietaryRules';
+import { TAG_GROUPS, TAG_REGISTRY, TAGS_IN_GROUP_ORDER } from '../src/data/tags';
 
 function main(): void {
   const violations = validateDataset(MEAL_CARDS);
@@ -28,8 +29,11 @@ function main(): void {
     console.log(`  ${type}: ${count}`);
   }
   console.log('\nBy tag:');
-  for (const [tag, count] of [...tagCounts.entries()].sort()) {
-    console.log(`  ${tag}: ${count}`);
+  for (const group of TAG_GROUPS) {
+    console.log(`  ${group.label}:`);
+    for (const tag of TAGS_IN_GROUP_ORDER[group.id]) {
+      console.log(`    ${TAG_REGISTRY[tag].label} (${tag}): ${tagCounts.get(tag) ?? 0}`);
+    }
   }
   console.log('\nValidation PASSED.\n');
   process.exit(0);

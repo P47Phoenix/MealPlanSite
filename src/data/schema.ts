@@ -1,6 +1,9 @@
 /**
  * Core data schema for the Meal Card Planner.
  */
+import type { TagId } from './tags';
+
+export type { TagId };
 
 /** Which meal of the day a card belongs to. */
 export type MealType = 'breakfast' | 'lunch' | 'dinner' | 'snack';
@@ -72,10 +75,10 @@ export interface MealCard {
   /** Which meal of the day this card is intended for. */
   mealType: MealType;
   /**
-   * Free-form tags used for filtering, e.g. 'bedtime-snack', 'mediterranean',
-   * 'high-protein', 'low-sodium', 'seafood', 'gluten-free'.
+   * Tags used for filtering, drawn from the typed registry in `./tags.ts`
+   * (e.g. 'bedtime-snack', 'mediterranean', 'high-protein', 'seafood').
    */
-  tags: string[];
+  tags: TagId[];
   /** Active prep time in minutes (chopping, mixing, etc.). */
   prepTimeMinutes: number;
   /** Active/passive cook time in minutes (baking, roasting, simmering, etc.). */

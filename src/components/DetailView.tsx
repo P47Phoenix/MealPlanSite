@@ -1,4 +1,6 @@
 import type { MealCard } from '../data/schema';
+import { tagsByGroup } from '../data/tags';
+import TagChip from './TagChip';
 
 interface Props {
   card: MealCard;
@@ -43,13 +45,20 @@ export default function DetailView({ card, selected, onToggleSelect, onBack }: P
         <p className="detail-view__time">
           Prep {card.prepTimeMinutes} min · Cook {card.cookTimeMinutes} min
         </p>
-        <ul className="detail-view__tags" aria-label="Tags">
-          {card.tags.map((tag) => (
-            <li key={tag} className="tag-pill">
-              {tag}
-            </li>
-          ))}
-        </ul>
+        {card.tags.length > 0 && (
+          <dl className="tag-groups">
+            {tagsByGroup(card.tags).map((g) => (
+              <div key={g.group} className="tag-groups__row">
+                <dt className="tag-groups__label">{g.label}</dt>
+                <dd className="tag-groups__chips">
+                  {g.tags.map((def) => (
+                    <TagChip key={def.id} tagId={def.id} variant="display" />
+                  ))}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )}
         <button
           type="button"
           role="checkbox"

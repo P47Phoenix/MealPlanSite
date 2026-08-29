@@ -154,3 +154,25 @@ describe('validateDataset', () => {
     expect(violations.some((v) => v.rule === 'bedtime-snack-required')).toBe(false);
   });
 });
+
+describe('validateSchema - tag registry', () => {
+  it('flags a tag that is not in the registry', () => {
+    const card = baseCard({ tags: ['high-protien' as unknown as MealCard['tags'][number]] });
+    const violations = validateCard(card);
+    expect(violations.some((v) => v.rule === 'unknown-tag' && v.message.includes('high-protien'))).toBe(true);
+  });
+
+  it('flags a duplicated tag', () => {
+    const card = baseCard({ tags: ['high-protein', 'high-protein'] });
+    const violations = validateCard(card);
+    expect(violations.filter((v) => v.rule === 'duplicate-tag')).toHaveLength(1);
+  });
+
+  it('accepts every registered tag', () => {
+    const card = baseCard({
+      tags: ['high-protein', 'gluten-free', 'vegetarian', 'low-sodium', 'low-fat', 'mediterranean',
+        'seafood', 'mexican-inspired', 'no-cook', 'make-ahead', 'bedtime-snack'],
+    });
+    expect(validateCard(card).filter((v) => v.rule === 'unknown-tag' || v.rule === 'duplicate-tag')).toEqual([]);
+  });
+});
