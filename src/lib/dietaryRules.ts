@@ -55,7 +55,9 @@ function isPoultrySausageException(text: string, word: string): boolean {
 function isBanzaException(card: MealCard, ingredientName: string): boolean {
   const lower = ingredientName.toLowerCase();
   if (!LEGUME_WORDS.some((w) => wordMatch(lower, w))) return false;
-  // Only chickpea/garbanzo hits can be exempted, and only via Banza/chickpea pasta naming.
+  // Only chickpea/garbanzo hits can be exempted, and only via Banza/chickpea
+  // pasta naming or hummus (both specific chickpea preparations, not bare
+  // chickpeas/beans/lentils).
   const isChickpeaWord = lower.includes('chickpea') || lower.includes('garbanzo');
   if (!isChickpeaWord) return false;
   const nameLower = card.name.toLowerCase();
@@ -64,7 +66,8 @@ function isBanzaException(card: MealCard, ingredientName: string): boolean {
     nameLower.includes('chickpea penne') ||
     ingLower.includes('banza') ||
     ingLower.includes('chickpea pasta') ||
-    ingLower.includes('chickpea penne')
+    ingLower.includes('chickpea penne') ||
+    ingLower.includes('hummus')
   );
 }
 
