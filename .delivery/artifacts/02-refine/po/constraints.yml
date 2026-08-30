@@ -1,0 +1,55 @@
+# Constraints — Walmart Cart Integration for the Grocery List
+# Companion artifact to prd.md (Stage 2 / Refine, Product Owner role)
+
+scope_boundaries:
+  - "Extend PurchaseUnitEntry (src/data/purchaseUnits.ts) with an optional walmartItemId field."
+  - "New pure module src/lib/walmartLinks.ts: buildCartUrl(items) and buildSearchUrl(itemName)."
+  - "UI additions confined to src/components/GroceryListView.tsx and src/styles.css."
+  - "README.md documentation update for the Impact Radius affiliate prerequisite."
+  - "No new files/modules outside those listed above unless a new FR is added to the PRD first."
+
+technical_constraints:
+  - "No backend/server component exists or may be added — MealPlanSite is static, GitHub Pages-hosted."
+  - "The only viable cart-building mechanism is the credential-free affil.walmart.com/cart/addToCart deep link (items=ID|QTY,...)."
+  - "Walmart Marketplace/Supplier API (OAuth2 client-credentials) and I/O Affiliate API (RSA-signed) are both incapable of building a shopper's cart and both require a server-held secret — excluded on capability grounds, not just security."
+  - "walmartLinks.ts must be pure and framework-free (no React import), matching groceryList.ts / shareState.ts / preferences.ts conventions."
+  - "Item-key derivation (lowercased/trimmed shoppingName ?? name) must reuse the existing logic from groceryList.ts, not duplicate it."
+  - "Purchase quantity for cart URLs comes from item.purchase?.quantity, falling back to Math.ceil(item.quantity), floored at 1."
+
+explicitly_excluded:
+  - "Walmart product-search, pricing, or stock-availability integration (requires the RSA-signed I/O Affiliate API)."
+  - "Instacart or any other retailer integration (rejected: Bearer secret with no safe home on a static site, ~30-40 day production approval, no hobbyist path)."
+  - "Automated Walmart item-ID discovery, validation, bulk import, or periodic refresh — curation stays manual."
+  - "Bulk item-ID sourcing via Walmart's Data Feed API or Product Lookup API — both require the same Impact Radius affiliate approval as the add-to-cart link, so this is a post-approval upgrade path, not an in-scope alternative to manual curation."
+  - "Third-party scraped Walmart item-ID datasets (e.g., CrawlFeeds) — small, stale (Dec 2021), unofficial; not an acceptable data source at any point."
+  - "Store selection, price display, or checkout completion inside MealPlanSite — the deep link hands off to Walmart entirely."
+  - "Server-side detection/enforcement of Impact Radius affiliate-approval status — no server exists to do this."
+  - "Analytics/telemetry on cart-button usage or conversion — no backend exists to collect it."
+
+assumptions:
+  - "Walmart's documented restriction of the add-to-cart endpoint to Impact Radius publishers is a publisher-eligibility policy, not a runtime credential check, so the link can be shipped and may function even before formal approval is confirmed."
+  - "The existing 23-entry PURCHASE_UNITS key scheme is stable and will not be restructured as part of this feature."
+  - "Manual curation of walmartItemId values by inspecting walmart.com/ip/<name>/<ID> URLs is an acceptable ongoing maintenance cost, not a blocker to shipping."
+  - "No fixed ship date exists; timeline is pipeline-stage-relative (see PRD section 9)."
+
+dependencies:
+  - "Walmart Impact Radius affiliate-program enrollment for production legitimacy of the cart link (external, user/site-operator action, outside this codebase)."
+  - "Existing computePurchaseQuantity logic and GroceryItem shape from the prior grocery-list phase (unchanged by this feature)."
+  - "Existing .copy-link-button styling and design tokens in src/styles.css, reused rather than replaced."
+
+non_negotiables:
+  - "Zero backend and zero exposed secrets — no exceptions, regardless of engineering convenience."
+  - "Every grocery-list item, curated or not, must always have a working manual fallback (per-item Search link) — the feature must never silently drop an item."
+  - "The 'Add all to Walmart cart' button must show an honest N-of-M coverage count and must not render at all when coverage is zero (never shown disabled/broken)."
+  - "No fabricated Walmart affiliate tracking ID may be added to the URL format."
+
+risk_tolerance:
+  - "Accept the risk that Walmart may change or discontinue the affil.walmart.com/cart/addToCart endpoint without notice — no automated monitoring is in scope; the search fallback absorbs this failure mode."
+  - "Accept that curated walmartItemId values will go stale over time (relisted/discontinued products) — mitigated only by the always-present search fallback, not by automation, in this release."
+  - "Accept shipping the cart button before Impact Radius affiliate approval is confirmed, per FR-08 — the client cannot verify approval status, and gating the button on an unverifiable flag was rejected as infeasible."
+
+approval_gates:
+  - "PRD (this document) requires Product Owner sign-off before story decomposition begins (Stage 2 exit)."
+  - "Open questions OQ-1 (affiliate-approval status/messaging) and OQ-2 (approval-status flag) should be resolved or explicitly deferred before Stage 7 (UAT) sign-off."
+  - "Architect flagged the pre-approval UX risk as non-blocking in the Stage 1 DoD review; FR-08 is the required resolution and must be present in story acceptance criteria at Plan stage."
+  - "No production merge of the cart button without the README update (FR-07) documenting the Impact Radius prerequisite."
