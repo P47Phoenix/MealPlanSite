@@ -326,6 +326,9 @@ input:focus-visible {
   outline-offset: 2px;
 }
 
+.walmart-cart-button {
+}
+
 .copy-confirmation {
   font-size: 0.8rem;
   color: var(--text-muted);
@@ -356,6 +359,25 @@ input:focus-visible {
 .target-note {
   color: var(--text-muted);
   font-size: 0.8rem;
+}
+
+.walmart-coverage-count {
+}
+
+.grocery-item__search-link {
+  color: var(--text-muted);
+  text-decoration: underline;
+  padding: 0 var(--space-2);
+}
+
+.grocery-item__search-link:hover,
+.grocery-item__search-link:focus {
+  color: var(--text);
+}
+
+.grocery-item__search-link:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 
 .grocery-section h4 {
