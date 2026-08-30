@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import type { MealCard } from '../data/schema';
 import { buildGroceryList, type GroceryItem } from '../lib/groceryList';
+import { buildCartUrl, buildSearchUrl, getQualifyingItems } from '../lib/walmartLinks';
 import {
   getGroceryDisplayMode,
   setGroceryDisplayMode,
@@ -49,6 +50,15 @@ export default function GroceryListView({ selectedCards, onClose }: Props) {
   const [displayMode, setDisplayMode] = useState<GroceryDisplayMode>(getGroceryDisplayMode);
   const [showSourceRecipes, setShowSourceRecipesState] = useState<boolean>(getShowSourceRecipes);
   const groceryList = useMemo(() => buildGroceryList(selectedCards), [selectedCards]);
+
+  const { cartUrl, curatedCount, totalCount } = useMemo(() => {
+    const allItems = Object.entries(groceryList).flatMap(([, items]) => items);
+    return {
+      cartUrl: buildCartUrl(allItems),
+      curatedCount: getQualifyingItems(allItems).length,
+      totalCount: allItems.length,
+    };
+  }, [groceryList]);
 
   function copyLink() {
     navigator.clipboard
@@ -120,6 +130,23 @@ export default function GroceryListView({ selectedCards, onClose }: Props) {
         <span aria-live="polite" className="copy-confirmation">
           {listCopied ? 'List copied!' : ''}
         </span>
+        {cartUrl && (
+          <>
+            <a
+              className="copy-link-button walmart-cart-button"
+              href={cartUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Add all to Walmart cart (opens in new tab)"
+              aria-describedby="walmart-coverage-count"
+            >
+              Add all to Walmart cart
+            </a>
+            <span id="walmart-coverage-count" className="target-note walmart-coverage-count">
+              {curatedCount} of {totalCount} items
+            </span>
+          </>
+        )}
         <button type="button" className="close-button" onClick={onClose} aria-label="Close grocery list">
           ✕
         </button>
@@ -195,7 +222,16 @@ export default function GroceryListView({ selectedCards, onClose }: Props) {
                         <>
                           {item.quantity} {item.unit} {item.name}
                         </>
-                      )}
+                      )}{' '}
+                      <a
+                        className="grocery-item__search-link"
+                        href={buildSearchUrl(item.name)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Search for ${item.name} (opens in new tab)`}
+                      >
+                        Search
+                      </a>
                       {showSourceRecipes && item.sourceCards.length > 0 && (
                         <ul className="grocery-source-list">
                           {item.sourceCards.map((sourceName) => (

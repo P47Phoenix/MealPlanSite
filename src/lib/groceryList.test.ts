@@ -192,7 +192,7 @@ describe('buildGroceryList - purchase-quantity wiring', () => {
       ingredients: [{ name: 'Chicken breast', quantity: 130, unit: 'g', section: 'protein' }],
     });
     const list = buildGroceryList([card]);
-    expect(list.protein[0].purchase).toEqual({ quantity: 1, unit: 'lb' });
+    expect(list.protein[0].purchase).toEqual({ quantity: 1, unit: '3 lb bag' });
   });
 
   it('leaves purchase undefined for an ingredient absent from PURCHASE_UNITS', () => {

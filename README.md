@@ -37,6 +37,26 @@ builds and publishes on every push to `main`.
 The Vite `base` is set to `/MealPlanSite/` in `vite.config.ts` to match the
 GitHub Pages project-site URL.
 
+## Walmart cart and search links
+
+The grocery list view includes an "Add all to Walmart cart" link and a
+per-item "Search" link:
+
+- **Add all to Walmart cart** builds a deep link to
+  `affil.walmart.com/cart/addToCart` with the curated, catalog-matched items
+  in the current grocery list (with their resolved quantities). It only
+  renders when at least one item in the list has a curated Walmart catalog
+  ID; a coverage note ("N of M items") next to it shows how many of the
+  list's items are included, since unmatched items are silently skipped.
+- **Search** links (one per grocery item) open a Walmart search for that
+  item's name, and work for every item regardless of catalog coverage.
+
+The `affil.walmart.com` cart endpoint is Impact Radius affiliate
+infrastructure and **requires Impact Radius affiliate program enrollment**
+for Walmart before it can be used in production — this project does not
+currently assert or include any affiliate tracking ID. See the PRD's open
+questions for the status of that enrollment.
+
 ## Adding or editing meal cards
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full schema, the dietary

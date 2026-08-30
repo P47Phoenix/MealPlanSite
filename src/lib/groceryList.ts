@@ -70,6 +70,15 @@ export function computePurchaseQuantity(
   return { quantity, unit: entry.unitLabel };
 }
 
+/**
+ * Derives the case-insensitive lookup key used to match ingredients across
+ * cards and to look up purchase-unit data. Shared by `groceryList.ts`'s
+ * aggregation and `walmartLinks.ts`'s lookups so both stay consistent.
+ */
+export function normalizeIngredientKey(name: string): string {
+  return name.trim().toLowerCase();
+}
+
 function normalizeVolume(totalTsp: number): { quantity: number; unit: string } {
   // Prefer the largest unit that gives a "clean-ish" result.
   if (totalTsp >= 48 && totalTsp % 48 === 0) return { quantity: totalTsp / 48, unit: 'cup' };
@@ -100,7 +109,7 @@ export function buildGroceryList(cards: MealCard[]): GroceryList {
   for (const card of cards) {
     for (const ing of card.ingredients) {
       const shoppingName = (ing.shoppingName ?? ing.name).trim();
-      const key = shoppingName.toLowerCase();
+      const key = normalizeIngredientKey(shoppingName);
       let acc = byKey.get(key);
       if (!acc) {
         acc = {
@@ -141,7 +150,7 @@ export function buildGroceryList(cards: MealCard[]): GroceryList {
         quantity = Math.round(qty * 100) / 100;
         unit = unitKey;
       }
-      const purchaseEntry = PURCHASE_UNITS[acc.displayName.trim().toLowerCase()];
+      const purchaseEntry = PURCHASE_UNITS[normalizeIngredientKey(acc.displayName)];
       list[acc.section].push({
         name: acc.displayName,
         quantity,
