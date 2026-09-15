@@ -261,15 +261,15 @@ export const breakfastCards: MealCard[] = [
     prepTimeMinutes: 8,
     cookTimeMinutes: 22,
     ingredients: [
-      { name: 'Egg whites', quantity: 6, unit: 'each', section: 'protein' },
+      { name: 'Liquid egg whites', shoppingName: 'Egg whites', quantity: 198, unit: 'g', section: 'protein' },
       { name: 'Spinach', quantity: 1, unit: 'cup', section: 'produce' },
       { name: 'Bell pepper', quantity: 0.25, unit: 'each', section: 'produce' },
       { name: 'Part-skim mozzarella, shredded', shoppingName: 'Part-skim mozzarella cheese', quantity: 0.25, unit: 'cup', section: 'dairy' },
     ],
     steps: [
       'Preheat the oven to 350°F and grease 4 wells of a muffin tin.',
-      'Finely chop the spinach and bell pepper.',
-      'Whisk the egg whites in a bowl, then stir in the chopped vegetables and shredded mozzarella.',
+      'Finely chop the spinach and bell pepper. Quickly wilt the chopped spinach in a dry skillet over medium heat or in the microwave, about 30-45 seconds, then squeeze out the excess moisture with a clean towel or paper towels.',
+      'Whisk the 198 g egg whites in a bowl, then stir in the wilted spinach, chopped bell pepper, and shredded mozzarella.',
       'Divide the mixture evenly among the greased muffin wells.',
       'Bake for 20-22 minutes, until fully set and no longer wet in the center.',
       'Let cool 5 minutes before removing from the tin.',
@@ -281,7 +281,7 @@ export const breakfastCards: MealCard[] = [
       satFatG: { value: 2.5, confidence: 'estimated' },
       carbsG: { value: 5, confidence: 'estimated' },
     },
-    cooksNotes: null,
+    cooksNotes: 'Refrigerate leftovers up to 4 days and reheat before eating.',
   },
   {
     id: 'am3-granola-yogurt-parfait',
