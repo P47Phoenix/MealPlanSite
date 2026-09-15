@@ -8,6 +8,36 @@ description: Add a new meal card to the Meal Card Planner dataset (src/data/card
 Adds one schema-valid, dietary-rule-compliant meal card to this repo's
 dataset, with researched (not guessed) nutrition.
 
+## Related agents
+
+This repo has four persona agents under `.claude/agents/` that build on this
+skill rather than duplicate it:
+
+- `chef` — invokes this skill to create new cards; if the user addresses
+  "the chef" directly, that agent is what runs this workflow.
+- `sous-chef` — edits a card *already in* the dataset (ingredient swaps,
+  portion/macro tweaks, validator-failure repairs). Route there instead of
+  here if the request is about an existing card, not a new one.
+- `food-critic` — a read-only, deeper quality pass beyond this skill's own
+  step-1/step-5 checks (nutrition soft-flag review, verified-vs-estimated
+  honesty, step clarity, `shoppingName` correctness, cooking-time realism,
+  flavor coherence, dataset-level variety). Step 6 below runs it, alongside
+  `chef` and `sous-chef`, as a mandatory red-team review of every new card.
+- `menu-planner` — assembles multi-day plans from existing cards; not
+  relevant to adding a single card.
+
+Beyond the team, this repo also has a **review board** of read-only
+chef-persona judges that acts as the final gate on every new card. Every
+seat is held by a genuinely Michelin-starred chef persona — the board
+judges Michelin-caliber technique and ingredient care, not celebrity
+recognition. Core seats: `gordon-ramsay` (technique), `thomas-keller`
+(refinement/Michelin lens), `daniel-boulud` (home-cook approachability
+without sacrificing craft), plus cuisine specialists matched to the dish
+(`lefteris-lazarou` for Mediterranean/Greek, `enrique-olvera` for Mexican,
+`masayoshi-takayama` for Japanese/Asian flavor profiles — check
+`.claude/agents/` for the current full roster). Step 6 below runs this
+board too, after the team's red-team round.
+
 ## 0. Read live sources first — every invocation
 
 Never rely on a paraphrased copy of the schema or rules baked into this
@@ -112,14 +142,67 @@ Run `npm run validate:cards` via Bash. Parse the output:
   resolving within 2 tries; if still failing, report the exact validator
   output to the user rather than guessing further.
 
-## 6. Summarize
+## 6. Red-team review and review board
+
+Once `npm run validate:cards` passes, run the same two-layer review
+`review-meal-card` uses (its steps 2b-4) on the card you just wrote, before
+reporting to the user — passing the validator isn't the same as being
+done.
+
+**Team round (review-meal-card steps 2b-2c):**
+- Dispatch `chef`, `sous-chef`, and `food-critic` in parallel (`Agent` tool,
+  one message, three calls), each reviewing the new card independently from
+  its own lens (dish concept/flavor, cooking-time/execution,
+  compliance/quality), per each agent's own "Also: red-team review"
+  instructions. Treat this as a genuinely independent check, not a rubber
+  stamp of your own steps 1-4 work — the point is catching what your own
+  drafting missed.
+- Once all three round-1 reports are in, dispatch them again in parallel,
+  each given the other two's full reports verbatim, and ask each to
+  red-team: challenge anything wrong, overstated, or out of the other's
+  lane, and state whether it stands by or revises its own findings.
+- Synthesize into consensus findings, resolved disagreements, and open
+  disputes — an unresolved tie goes to `chef`'s verdict, this repo's
+  standing team-level tiebreak rule — using the same structure as
+  `review-meal-card`'s step 3.
+
+**Review board (review-meal-card step 4):**
+- Dispatch the core seats (`gordon-ramsay`, `thomas-keller`, `daniel-boulud`)
+  plus any cuisine specialist whose trigger matches this card (check
+  `.claude/agents/` for the current roster — e.g. `lefteris-lazarou` for
+  Mediterranean/Greek, `enrique-olvera` for Mexican, `masayoshi-takayama`
+  for Japanese/Asian flavor profiles), each given the card and the team
+  synthesis above.
+- Tally verdicts (**Ship as-is** / **Needs changes**); majority wins, an
+  even split goes to `gordon-ramsay`'s individual verdict. This board
+  verdict is the actual final gate — it can override the team synthesis,
+  including a `chef` team-level tiebreak call.
+
+If you're running this skill without `Agent`-tool access (e.g. you are the
+`chef` sub-agent invoked directly and lack that tool), skip the live
+dispatch, say so plainly in your summary, and suggest the user run
+`review-meal-card` on the new card next rather than silently treating it as
+reviewed.
+
+## 7. Apply fixes and summarize
 
 Report: card name, meal type, headline macros (calories/protein/sodium/
-satfat/carbs), a verified-vs-estimated breakdown across the 5 figures, and
-a one-line note on daily-target fit — including any soft flag from step 1
-(sodium/satfat over the per-card guideline).
+satfat/carbs), a verified-vs-estimated breakdown across the 5 figures, a
+one-line note on daily-target fit (including any soft flag from step 1),
+the step-6 team synthesis in full, and the review board's final verdict and
+per-judge critique.
 
-## 7. Refusal path
+If the review surfaced fixes the user wants applied, make them yourself
+now — you already hold edit access, so there's no need to spawn another
+agent for it. Follow the same discipline as `chef`'s "applying review
+fixes" rules: the minimal edit per finding, recompute affected nutrition
+via a real lookup, keep `confidence` honest, follow the `shoppingName`
+convention, and re-run `npm run validate:cards` after editing. If the board
+called "Needs changes," re-run the board on the revised card before
+considering it finalized. Don't apply anything without the user's
+go-ahead — step 6 surfaces findings, it doesn't auto-fix them.
+
+## 8. Refusal path
 
 On a step-1 hard fail: write a short explanation naming the specific rule
 that was violated and why (pull the "why" from
