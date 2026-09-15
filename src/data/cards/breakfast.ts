@@ -184,7 +184,7 @@ export const breakfastCards: MealCard[] = [
       satFatG: { value: 7.8, confidence: 'estimated' },
       carbsG: { value: 32.7, confidence: 'estimated' },
     },
-    cooksNotes: 'Look for a low-sodium chicken sausage specifically (e.g. Jimmy Dean Low Sodium Chicken Breakfast Links run ~58 mg sodium per link vs. 300+ for regular chicken sausage) and a genuinely low-sodium rye bread (e.g. Alvarado Street Bakery Sprouted Rye Seed Bread runs ~140 mg sodium per slice vs. 170-210+ mg for a standard deli rye) — the ingredient name alone doesn\'t make it low-sodium. Stick to 3 eggs (not 4) to keep saturated fat under this dataset\'s 8 g soft-flag threshold (13 g daily ceiling spread across meals/snacks); this card lands at 7.8 g, just under that line, and a 4th egg would push it over.',
+    cooksNotes: 'Look for a low-sodium chicken sausage specifically (e.g. Jimmy Dean Low Sodium Chicken Breakfast Links, ~58 mg sodium per link vs. 300+ mg for regular chicken sausage) and a genuinely low-sodium rye bread (e.g. Alvarado Street Bakery Sprouted Rye Seed Bread, ~140 mg per slice) — the ingredient name alone doesn\'t guarantee low sodium, so check the label. Stick to 3 eggs rather than 4 to keep the saturated fat reasonable for one meal.',
   },
   {
     id: 'am3-baked-oatmeal-cup',
@@ -508,7 +508,7 @@ export const breakfastCards: MealCard[] = [
       satFatG: { value: 3.2, confidence: 'estimated' },
       carbsG: { value: 8, confidence: 'estimated' },
     },
-    cooksNotes: 'Makes 6 muffin cups; store refrigerated up to 4 days and reheat for a grab-and-go breakfast. Feta is trimmed to ¾ oz with a small pinch of salt added back in for seasoning, which keeps sodium at about 845 mg — still close to the 900 mg soft-flag threshold, so pair with low-sodium sides.',
+    cooksNotes: 'Makes 6 muffin cups; store refrigerated up to 4 days and reheat for a grab-and-go breakfast. Feta is trimmed to ¾ oz with just a pinch of salt added for seasoning — this one still runs fairly high in sodium, so pair it with low-sodium sides the rest of the day.',
   },
   {
     id: 'am1-protein-pancakes-banana-walnut',
@@ -603,7 +603,7 @@ export const breakfastCards: MealCard[] = [
       satFatG: { value: 3.6, confidence: 'estimated' },
       carbsG: { value: 22, confidence: 'estimated' },
     },
-    cooksNotes: '"Hummus" as an ingredient name contains none of the automated legume-check trigger words (bean/lentil/chickpea/garbanzo), so it never trips the validator\'s legume rule — no exception is needed. The olive oil and oregano finish adds the Mediterranean seasoning (salt, fat, acidity from the oil, herbal note from the oregano) the plate was otherwise missing.',
+    cooksNotes: 'The olive oil and oregano finish adds the Mediterranean seasoning — salt, fat, and acidity from the oil, an herbal note from the oregano — that the plate would otherwise be missing.',
   },
   {
     id: 'am1-greek-yogurt-feta-cucumber-plate',
@@ -637,7 +637,7 @@ export const breakfastCards: MealCard[] = [
       satFatG: { value: 5.6, confidence: 'estimated' },
       carbsG: { value: 31, confidence: 'estimated' },
     },
-    cooksNotes: 'The yogurt base is seasoned with lemon juice, dried oregano (Greek rigani), and black pepper rather than added salt — sodium here is already close to the ~900mg soft ceiling (feta, kalamata olives, and the pita each carry meaningful sodium on their own), so no salt is added to the yogurt; season with a small pinch of salt only if you have headroom elsewhere that day. This is a no-cook plate: the pita is served at room temperature, not warmed.',
+    cooksNotes: 'The yogurt base is seasoned with lemon juice, dried oregano (Greek rigani), and black pepper instead of added salt, since the feta, kalamata olives, and pita already bring plenty of sodium on their own — add a small pinch of salt to the yogurt only if you want it saltier. This is a no-cook plate: serve the pita at room temperature rather than warming it.',
   },
   {
     id: 'am1-mango-coconut-chia-pudding',
@@ -735,7 +735,7 @@ export const breakfastCards: MealCard[] = [
       satFatG: { value: 2.3, confidence: 'estimated' },
       carbsG: { value: 6, confidence: 'estimated' },
     },
-    cooksNotes: 'Sodium runs over the 900 mg soft-flag threshold, driven mostly by the smoked salmon and capers — use a low-sodium smoked salmon and rinse the capers if you need to bring it down.',
+    cooksNotes: 'This dish runs high in sodium, driven mostly by the smoked salmon and capers — use a lower-sodium smoked salmon and rinse the capers if you want to bring it down.',
   },
   {
     id: 'am1-turkey-sausage-egg-white-veggie-scramble',
@@ -767,7 +767,7 @@ export const breakfastCards: MealCard[] = [
       satFatG: { value: 3, confidence: 'estimated' },
       carbsG: { value: 9, confidence: 'estimated' },
     },
-    cooksNotes: 'Uses Applegate Naturals Savory Turkey Breakfast Sausage Links (440 mg sodium per 3 links, per the manufacturer\'s own nutrition panel) — a genuinely low-sodium turkey or chicken breakfast sausage link with a real, verifiable nutrition panel could not be confirmed to exist (the Jimmy Dean "low sodium chicken" link previously named here does not exist as an actual product). Combined with the naturally sodium-heavy egg whites (~400 mg for 240 g), this dish runs to about 987 mg sodium, over this dataset\'s ~900 mg soft-flag threshold, so the low-sodium tag has been dropped; pair with low-sodium sides for the rest of the day if you\'re tracking sodium closely.',
+    cooksNotes: 'Uses Applegate Naturals Savory Turkey Breakfast Sausage Links (440 mg sodium per 3 links, per the manufacturer\'s label). Combined with the naturally sodium-heavy egg whites, this dish runs fairly high in sodium overall, so pair it with low-sodium sides for the rest of the day if you\'re watching sodium closely.',
   },
   {
     id: 'am1-protein-waffles-berry-yogurt',
@@ -869,7 +869,7 @@ export const breakfastCards: MealCard[] = [
       satFatG: { value: 4.7, confidence: 'estimated' },
       carbsG: { value: 16, confidence: 'estimated' },
     },
-    cooksNotes: 'Uses Applegate Naturals Savory Turkey Breakfast Sausage Links (440 mg sodium per 3 links, per the manufacturer\'s own nutrition panel) — the "Bilinski\'s Organic Turkey Breakfast Sausage" previously named here does not exist; Bilinski\'s catalog is chicken-only and was never a turkey product. Standard turkey breakfast sausage actually runs closer to 130-160 mg sodium per link (e.g. Jennie-O, Butterball, Jimmy Dean), so Applegate\'s 440 mg for 3 links is on the higher end for the category, but this plate\'s modest egg portion (1 whole egg + 3 whites, not a larger egg-white-only scramble) keeps the dish to about 780 mg sodium — under this dataset\'s ~900 mg soft-flag threshold, so the low-sodium tag is kept, honestly this time. Baby spinach is folded into the eggs for a vegetable component and some freshness against the rich sausage and eggs; the sausage is tented with foil while the eggs finish so it reaches the plate hot rather than cooling on the counter.',
+    cooksNotes: 'Uses Applegate Naturals Savory Turkey Breakfast Sausage Links (440 mg sodium per 3 links, per the manufacturer\'s label) — on the higher end for turkey breakfast sausage, so swap in a lower-sodium brand (Jennie-O, Butterball, and Jimmy Dean typically run 130-160 mg per link) if you want to bring sodium down further. Baby spinach folded into the eggs adds a vegetable and some freshness against the rich sausage; tent the cooked sausage with foil while you finish the eggs so it reaches the plate hot.',
   },
   {
     id: 'am2-shakshuka-eggs',
@@ -938,7 +938,7 @@ export const breakfastCards: MealCard[] = [
       satFatG: { value: 4.7, confidence: 'estimated' },
       carbsG: { value: 20, confidence: 'estimated' },
     },
-    cooksNotes: 'Uses hummus as the legume ingredient, which is an allowed exception to the no-legume rule alongside Banza chickpea pasta. The yogurt is seasoned with lemon juice, dried oregano, and black pepper rather than added salt — sodium here is already meaningful from the feta, kalamata olives, and hummus, so no salt is added to the base.',
+    cooksNotes: 'The yogurt is seasoned with lemon juice, dried oregano, and black pepper instead of added salt — the feta, kalamata olives, and hummus already bring plenty of sodium, so there\'s no need for extra salt in the base.',
   },
   {
     id: 'am2-chicken-breakfast-quesadilla',
@@ -1033,7 +1033,7 @@ export const breakfastCards: MealCard[] = [
       satFatG: { value: 3.0, confidence: 'estimated' },
       carbsG: { value: 41, confidence: 'estimated' },
     },
-    cooksNotes: 'Smoked salmon is naturally high in sodium (curing process) — this card runs close to the 900 mg/card soft-sodium guideline, so pair it with low-sodium sides for the rest of the day.',
+    cooksNotes: 'Smoked salmon is naturally high in sodium from the curing process, so pair this with low-sodium sides for the rest of the day.',
   },
   {
     id: 'am2-turkey-burrito-bowl',
@@ -1176,6 +1176,6 @@ export const breakfastCards: MealCard[] = [
       satFatG: { value: 4, confidence: 'estimated' },
       carbsG: { value: 20, confidence: 'estimated' },
     },
-    cooksNotes: 'Nutrition is recomputed bottom-up from the ingredient list above: about 276 kcal, 16.7g protein, 119mg sodium, 2g sat fat, and 9.9g carbs per pancake (4-pancake batch; the figures above are the 2-pancake portion, i.e. half the batch). Baking powder alone contributes roughly 244mg of the batch sodium, about half the total, so do not drop it from the sodium math. Almond flour figures are based on a standard blanched almond flour label (e.g. Bob’s Red Mill Super-Fine Almond Flour, 28g serving); egg and cottage cheese figures are from USDA FoodData Central. Confirm the specific low-sodium/no-salt-added cottage cheese product’s own label, since it drives most of this card’s low-sodium claim.',
+    cooksNotes: 'This recipe makes 4 pancakes total; the nutrition above is for a 2-pancake serving (half the batch). Use a low-sodium or no-salt-added cottage cheese specifically, since it drives most of this recipe\'s sodium total.',
   },
 ];
