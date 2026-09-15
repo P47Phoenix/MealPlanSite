@@ -1009,7 +1009,7 @@ export const breakfastCards: MealCard[] = [
     id: 'am2-smoked-salmon-avocado-toast',
     name: 'Smoked Salmon Avocado Toast',
     mealType: 'breakfast',
-    tags: ['seafood', 'high-protein', 'no-cook'],
+    tags: ['seafood', 'high-protein'],
     prepTimeMinutes: 8,
     cookTimeMinutes: 2,
     ingredients: [
@@ -1018,13 +1018,13 @@ export const breakfastCards: MealCard[] = [
       { name: 'Smoked salmon (nova-style lox)', shoppingName: 'Smoked salmon', quantity: 2, unit: 'oz', section: 'protein' },
       { name: 'Cucumber (sliced)', shoppingName: 'Cucumber', quantity: 0.25, unit: 'cup', section: 'produce' },
       { name: 'Capers', quantity: 1, unit: 'tsp', section: 'pantry' },
-      { name: 'Lemon juice', quantity: 1, unit: 'tsp', section: 'produce' },
+      { name: 'Lemon juice', shoppingName: 'Lemon', quantity: 1, unit: 'tsp', section: 'produce' },
     ],
     steps: [
       'Toast the 2 slices of low-sodium bread until golden.',
       'Mash the avocado with 1 tsp lemon juice and spread over the toast.',
-      'Layer the 2 oz smoked salmon over the avocado — it is a fully cooked, ready-to-eat cured product, so no additional cooking is needed.',
-      'Top with sliced cucumber and 1 tsp capers, then serve immediately.',
+      'Layer the 2 oz smoked salmon over the avocado — it is a cured, cold-smoked product that is ready to eat as-is, so no additional cooking is needed.',
+      'Thinly slice the cucumber and scatter it over the top along with 1 tsp capers, then serve immediately.',
     ],
     nutrition: {
       calories: { value: 376, confidence: 'estimated' },
