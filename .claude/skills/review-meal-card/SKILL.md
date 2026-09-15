@@ -46,10 +46,12 @@ celebrity recognition:
   lazarou` (Mediterranean/Greek — `mediterranean` tag or Greek dish
   concept), `enrique-olvera` (Mexican — `mexican-inspired` tag or Mexican/
   Tex-Mex concept), `masayoshi-takayama` (Japanese/Asian — teriyaki/soy-
-  ginger-sesame flavor profile, even without a dedicated tag). This roster
-  can grow as more cuisine specialists are added for this repo — check
-  `.claude/agents/` for the current set rather than assuming this list is
-  exhaustive.
+  ginger-sesame flavor profile, even without a dedicated tag), `massimo-
+  bottura` (Italian — piccata, cacciatore, puttanesca, parmesan-style,
+  pomodoro, pesto, scampi, Tuscan-style, caprese, antipasto, or similar
+  dish concept, even without a dedicated tag). This roster can grow as more
+  cuisine specialists are added for this repo — check `.claude/agents/` for
+  the current set rather than assuming this list is exhaustive.
 - If the board's verdict splits evenly (possible when a cuisine specialist
   makes the seat count even), `gordon-ramsay`'s individual verdict is the
   board's own tiebreaker — separate from `chef`'s tiebreak role at the team
