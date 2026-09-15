@@ -1443,7 +1443,7 @@ export const dinnerCards: MealCard[] = [
     ingredients: [
       { name: 'Chicken leg quarter', quantity: 1, unit: 'each', section: 'protein' },
       { name: 'Yukon gold potatoes, cut into 1.5-inch chunks', shoppingName: 'Yukon gold potatoes', quantity: 170, unit: 'g', section: 'produce' },
-      { name: 'Olive oil', quantity: 2, unit: 'tbsp', section: 'pantry' },
+      { name: 'Olive oil', quantity: 3, unit: 'tbsp', section: 'pantry' },
       { name: 'Lemon, juiced', shoppingName: 'Lemon', quantity: 0.5, unit: 'each', section: 'produce' },
       { name: 'Garlic', quantity: 3, unit: 'clove', section: 'produce' },
       { name: 'Dried oregano', quantity: 1, unit: 'tbsp', section: 'pantry' },
@@ -1459,12 +1459,12 @@ export const dinnerCards: MealCard[] = [
       'Bake until the green beans are tender-crisp and an instant-read thermometer inserted into the thickest part of the thigh (avoiding the bone) reads 175-185°F (79-85°C), about 15 more minutes; add a few more minutes if it hasn’t reached temperature yet. Remove from the oven and let rest 5-10 minutes before serving.',
     ],
     nutrition: {
-      calories: { value: 790, confidence: 'estimated' },
+      calories: { value: 909, confidence: 'estimated' },
       proteinG: { value: 54, confidence: 'estimated' },
       sodiumMg: { value: 210, confidence: 'estimated' },
-      satFatG: { value: 8.7, confidence: 'estimated' },
+      satFatG: { value: 10.6, confidence: 'estimated' },
       carbsG: { value: 42, confidence: 'estimated' },
     },
-    cooksNotes: 'Adapted from the original Allrecipes version, which calls for 1 tbsp added table salt and runs ~1859mg sodium per serving — nearly all from that salt. This version omits the added salt and uses a salt-free lemon herb seasoning blend instead, bringing sodium down to a natural, unseasoned-chicken-and-potatoes level. Cut into chunks (rather than left whole) for faster, more even roasting. Great with a side of tzatziki.',
+    cooksNotes: 'Adapted from the original Allrecipes version, which calls for 1 tbsp added table salt and runs ~1859mg sodium per serving — nearly all from that salt. This version omits the added salt and uses a salt-free lemon herb seasoning blend instead, bringing sodium down to a natural, unseasoned-chicken-and-potatoes level. Cut into chunks (rather than left whole) for faster, more even roasting. Oil increased from 2 to 3 tbsp — with the mixture split three ways across the potatoes, chicken, and green beans, 2 tbsp left each component under-coated for good browning and crisping. Great with a side of tzatziki.',
   },
 ];
