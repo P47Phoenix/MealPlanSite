@@ -877,7 +877,7 @@ export const breakfastCards: MealCard[] = [
     mealType: 'breakfast',
     tags: ['vegetarian', 'mediterranean', 'gluten-free'],
     prepTimeMinutes: 8,
-    cookTimeMinutes: 15,
+    cookTimeMinutes: 20,
     ingredients: [
       { name: 'Whole eggs', quantity: 2, unit: 'each', section: 'protein' },
       { name: 'No-salt-added diced tomatoes (canned)', shoppingName: 'No-salt-added diced tomatoes', quantity: 1, unit: 'cup', section: 'pantry' },
@@ -887,10 +887,13 @@ export const breakfastCards: MealCard[] = [
       { name: 'Feta cheese (crumbled)', shoppingName: 'Feta cheese', quantity: 20, unit: 'g', section: 'dairy' },
       { name: 'Olive oil', quantity: 1, unit: 'tsp', section: 'pantry' },
       { name: 'Paprika', quantity: 0.5, unit: 'tsp', section: 'pantry' },
+      { name: 'Ground cumin', quantity: 0.25, unit: 'tsp', section: 'pantry' },
+      { name: 'Kosher salt', quantity: 0.125, unit: 'tsp', section: 'pantry' },
+      { name: 'Black pepper', quantity: 1, unit: 'pinch', section: 'pantry' },
     ],
     steps: [
-      'Heat 1 tsp olive oil in a skillet over medium heat; add diced onion, bell pepper, and minced garlic and cook until softened, about 5 minutes.',
-      'Stir in 1 cup no-salt-added diced tomatoes and ½ tsp paprika; simmer, stirring occasionally, until slightly thickened, about 8 minutes.',
+      'Heat 1 tsp olive oil in a skillet over medium heat; add diced onion and bell pepper and cook until softened, about 4 minutes. Add the minced garlic and cook until fragrant, 30-60 seconds more.',
+      'Stir in 1 cup no-salt-added diced tomatoes, ½ tsp paprika, ¼ tsp ground cumin, 1/8 tsp kosher salt, and a pinch of black pepper; simmer uncovered, stirring occasionally, until slightly thickened, about 8 minutes.',
       'Make two small wells in the sauce and crack the 2 eggs into them.',
       'Cover and cook over low heat until the egg whites are fully set and the yolks reach your desired doneness, about 6-8 minutes.',
       'Crumble the 20 g feta over the top and serve directly from the skillet.',
@@ -898,11 +901,11 @@ export const breakfastCards: MealCard[] = [
     nutrition: {
       calories: { value: 309, confidence: 'estimated' },
       proteinG: { value: 18, confidence: 'estimated' },
-      sodiumMg: { value: 399, confidence: 'estimated' },
+      sodiumMg: { value: 690, confidence: 'estimated' },
       satFatG: { value: 6.8, confidence: 'estimated' },
       carbsG: { value: 16, confidence: 'estimated' },
     },
-    cooksNotes: null,
+    cooksNotes: 'No-salt-added canned tomatoes are the primary sodium control here; a small measured amount of salt (1/8 tsp) is added back during cooking so the dish still tastes seasoned, while total sodium stays well under typical ceilings.',
   },
   {
     id: 'am2-greek-yogurt-mediterranean-bowl',
