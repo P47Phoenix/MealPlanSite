@@ -454,7 +454,7 @@ export const snackCards: MealCard[] = [
     id: 'homemade-tzatziki-sauce',
     name: 'Homemade Tzatziki Sauce',
     mealType: 'snack',
-    tags: ['no-cook', 'vegetarian', 'gluten-free', 'mediterranean', 'low-sodium'],
+    tags: ['no-cook', 'vegetarian', 'gluten-free', 'mediterranean'],
     prepTimeMinutes: 15,
     cookTimeMinutes: 0,
     ingredients: [
@@ -472,10 +472,10 @@ export const snackCards: MealCard[] = [
       'Cover and refrigerate at least 30 minutes to let the flavors meld before serving. Makes about 4 servings (roughly ½ cup each); keeps refrigerated up to 4 days.',
     ],
     nutrition: {
-      calories: { value: 90, confidence: 'verified' },
-      proteinG: { value: 8.9, confidence: 'verified' },
-      sodiumMg: { value: 182, confidence: 'verified' },
-      satFatG: { value: 0.5, confidence: 'verified' },
+      calories: { value: 90, confidence: 'estimated' },
+      proteinG: { value: 8.9, confidence: 'estimated' },
+      sodiumMg: { value: 182, confidence: 'estimated' },
+      satFatG: { value: 0.5, confidence: 'estimated' },
       carbsG: { value: 5, confidence: 'estimated' },
     },
     cooksNotes: 'Serve with sliced cucumber, carrots, or bell pepper for dipping, or alongside grilled chicken.',
