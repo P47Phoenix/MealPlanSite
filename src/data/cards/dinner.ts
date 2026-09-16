@@ -1504,9 +1504,9 @@ export const dinnerCards: MealCard[] = [
     steps: [
       'Preheat oven to 425°F (220°C) and line a large rimmed baking sheet.',
       'In a bowl, whisk together the olive oil, lemon juice, oregano, black pepper, and salt-free lemon herb seasoning; mince the garlic and set it aside separately for now. Toss the potato chunks with about half of the oil mixture and arrange them around the edges of the baking sheet, then pour 2 tablespoons of water onto the pan around (not over) the potatoes. Place the chicken leg quarter skin-side up in the center, spoon about a quarter of the oil mixture over it, then rub it into the skin and underside by hand so it actually coats the whole piece rather than pooling on top and running off. Reserve the remaining quarter of the oil mixture for the green beans.',
-      'Bake 30 minutes, then shake the pan to loosen the potatoes, scatter the reserved minced garlic over the potatoes and chicken, and bake 15 minutes more.',
-      'Toss the green beans with the reserved oil mixture, scatter over the chicken and potatoes, and return to the oven.',
-      'Bake until the green beans are tender-crisp and an instant-read thermometer inserted into the thickest part of the thigh (avoiding the bone) reads 175-185°F (79-85°C), about 15 more minutes; add a few more minutes if it hasn’t reached temperature yet. Remove from the oven and let rest 5-10 minutes before serving.',
+      'Bake 30 minutes, then shake the pan to loosen the potatoes, and bake 15 minutes more.',
+      'Toss the green beans with the reserved oil mixture, then scatter them along with the reserved minced garlic over the chicken and potatoes, and return to the oven.',
+      'Bake until the green beans are tender-crisp, the potatoes are fork-tender, and an instant-read thermometer inserted into the thickest part of the thigh (avoiding the bone) reads 175-185°F (79-85°C), about 15 more minutes; add a few more minutes if it hasn\'t reached temperature yet. Remove from the oven and let rest 5-10 minutes before serving.',
     ],
     nutrition: {
       calories: { value: 909, confidence: 'estimated' },
