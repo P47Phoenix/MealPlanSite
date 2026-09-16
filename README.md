@@ -1,5 +1,7 @@
 # Meal Card Planner
 
+GitHub repository: https://github.com/P47Phoenix/MealPlanSite
+
 A personal, single-user React + TypeScript + Vite web app for browsing a curated
 deck of meal cards (breakfast/lunch/dinner/snack) and building a grocery list
 from a selection of them. Client-side only — no backend, no accounts, all meal
