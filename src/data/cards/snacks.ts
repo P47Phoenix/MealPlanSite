@@ -215,7 +215,7 @@ export const snackCards: MealCard[] = [
     id: 'sk1-protein-energy-balls',
     name: 'No-Bake Protein Energy Balls',
     mealType: 'snack',
-    tags: ['no-cook', 'make-ahead', 'vegetarian', 'high-protein'],
+    tags: ['low-sodium', 'no-cook', 'make-ahead', 'vegetarian'],
     prepTimeMinutes: 15,
     cookTimeMinutes: 0,
     ingredients: [
@@ -226,8 +226,8 @@ export const snackCards: MealCard[] = [
       { name: 'Mini chocolate chips', quantity: 20, unit: 'g', section: 'pantry' },
     ],
     steps: [
-      'In a bowl, mix 80 g rolled oats, 64 g unsalted peanut butter, 42 g honey, and 24 g chia seeds until well combined.',
-      'Fold in 20 g mini chocolate chips.',
+      'In a bowl, mix 80 g (about 1 cup) rolled oats, 64 g (about ¼ cup) unsalted peanut butter, 42 g (2 tbsp) honey, and 24 g (2 tbsp) chia seeds until well combined.',
+      'Fold in 20 g (about 2 tbsp) mini chocolate chips.',
       'Roll the mixture into about 12 balls, about 1 tbsp each.',
       'Refrigerate at least 30 minutes to firm up; store in an airtight container in the fridge up to a week. One serving is 3 balls.',
     ],
