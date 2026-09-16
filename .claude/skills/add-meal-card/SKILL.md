@@ -34,9 +34,11 @@ recognition. Core seats: `gordon-ramsay` (technique), `thomas-keller`
 (refinement/Michelin lens), `daniel-boulud` (home-cook approachability
 without sacrificing craft), plus cuisine specialists matched to the dish
 (`lefteris-lazarou` for Mediterranean/Greek, `enrique-olvera` for Mexican,
-`masayoshi-takayama` for Japanese/Asian flavor profiles — check
-`.claude/agents/` for the current full roster). Step 6 below runs this
-board too, after the team's red-team round.
+`masayoshi-takayama` for Japanese/Asian flavor profiles, `massimo-bottura`
+for Italian dish concepts (piccata, cacciatore, puttanesca, parmesan-style,
+pomodoro, pesto, scampi, Tuscan-style, caprese, antipasto, or similar) —
+check `.claude/agents/` for the current full roster). Step 6 below runs
+this board too, after the team's red-team round.
 
 ## 0. Read live sources first — every invocation
 
@@ -171,8 +173,8 @@ done.
   plus any cuisine specialist whose trigger matches this card (check
   `.claude/agents/` for the current roster — e.g. `lefteris-lazarou` for
   Mediterranean/Greek, `enrique-olvera` for Mexican, `masayoshi-takayama`
-  for Japanese/Asian flavor profiles), each given the card and the team
-  synthesis above.
+  for Japanese/Asian flavor profiles, `massimo-bottura` for Italian dish
+  concepts), each given the card and the team synthesis above.
 - Tally verdicts (**Ship as-is** / **Needs changes**); majority wins, an
   even split goes to `gordon-ramsay`'s individual verdict. This board
   verdict is the actual final gate — it can override the team synthesis,
