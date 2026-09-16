@@ -271,7 +271,7 @@ export const snackCards: MealCard[] = [
     id: 'sk1-egg-snack-pack',
     name: 'Hard-Boiled Egg Snack Pack',
     mealType: 'snack',
-    tags: ['no-cook', 'make-ahead', 'high-protein', 'gluten-free'],
+    tags: ['low-sodium', 'make-ahead', 'vegetarian', 'high-protein', 'gluten-free'],
     prepTimeMinutes: 5,
     cookTimeMinutes: 10,
     ingredients: [
@@ -280,18 +280,18 @@ export const snackCards: MealCard[] = [
       { name: 'Cucumber (sliced)', shoppingName: 'Cucumber', quantity: 52, unit: 'g', section: 'produce' },
     ],
     steps: [
-      'Bring a pot of water to a boil, gently add 2 eggs, and boil 10-12 minutes until fully cooked with a firm yolk.',
+      'Bring a pot of water to a boil, gently add 2 eggs, reduce to a gentle simmer, and cook 10-12 minutes until fully cooked with a firm yolk.',
       'Cool the eggs in cold water, then peel and halve them.',
       'Pack the eggs into a container with the cherry tomatoes and cucumber slices for a grab-and-go snack.',
     ],
     nutrition: {
-      calories: { value: 177, confidence: 'verified' },
-      proteinG: { value: 13.5, confidence: 'verified' },
-      sodiumMg: { value: 129, confidence: 'verified' },
+      calories: { value: 177, confidence: 'estimated' },
+      proteinG: { value: 13.5, confidence: 'estimated' },
+      sodiumMg: { value: 129, confidence: 'estimated' },
       satFatG: { value: 3.2, confidence: 'estimated' },
       carbsG: { value: 6, confidence: 'estimated' },
     },
-    cooksNotes: 'Boil a batch of 6-8 eggs at once to have this snack ready all week.',
+    cooksNotes: 'Boil a batch of 6-8 eggs at once to have this snack ready all week. A pinch of salt and pepper on the egg halves and a squeeze of lemon or light salt on the veggies perks the whole pack up if eating plain.',
   },
   {
     id: 'sk1-apple-almond-butter',
