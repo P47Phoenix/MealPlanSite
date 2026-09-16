@@ -250,7 +250,7 @@ export const snackCards: MealCard[] = [
     ingredients: [
       { name: 'Plain nonfat Greek yogurt', quantity: 340, unit: 'g', section: 'dairy' },
       { name: 'Honey', quantity: 42, unit: 'g', section: 'pantry' },
-      { name: 'Frozen mixed berries', quantity: 150, unit: 'g', section: 'other' },
+      { name: 'Frozen mixed berries', quantity: 150, unit: 'g', section: 'produce' },
     ],
     steps: [
       'Stir 340 g (about 1½ cups) plain nonfat Greek yogurt with 42 g (2 tbsp) honey until smooth.',
