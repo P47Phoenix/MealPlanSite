@@ -244,7 +244,7 @@ export const snackCards: MealCard[] = [
     id: 'sk1-greek-yogurt-bark',
     name: 'Greek Yogurt & Berry Bark',
     mealType: 'snack',
-    tags: ['make-ahead', 'vegetarian', 'gluten-free', 'high-protein'],
+    tags: ['low-sodium', 'no-cook', 'make-ahead', 'vegetarian', 'gluten-free'],
     prepTimeMinutes: 10,
     cookTimeMinutes: 0,
     ingredients: [
@@ -254,14 +254,14 @@ export const snackCards: MealCard[] = [
     ],
     steps: [
       'Stir 340 g (about 1½ cups) plain nonfat Greek yogurt with 42 g (2 tbsp) honey until smooth.',
-      'Spread the yogurt mixture evenly onto a parchment-lined sheet pan, about ¼ inch thick.',
-      'Scatter 150 g frozen mixed berries over the top, pressing gently into the yogurt.',
+      'Spread the yogurt mixture evenly onto a parchment-lined quarter-sheet pan (about 9x13 inches), about ¼ inch thick.',
+      'Scatter 150 g (about 1 cup) frozen mixed berries over the top, pressing gently into the yogurt.',
       'Freeze at least 3 hours, until firm, then break into pieces. Makes about 4 servings; store extra pieces in the freezer in a sealed bag.',
     ],
     nutrition: {
-      calories: { value: 104, confidence: 'verified' },
-      proteinG: { value: 9, confidence: 'verified' },
-      sodiumMg: { value: 52, confidence: 'verified' },
+      calories: { value: 104, confidence: 'estimated' },
+      proteinG: { value: 9, confidence: 'estimated' },
+      sodiumMg: { value: 33, confidence: 'estimated' },
       satFatG: { value: 0.2, confidence: 'estimated' },
       carbsG: { value: 16.3, confidence: 'estimated' },
     },
