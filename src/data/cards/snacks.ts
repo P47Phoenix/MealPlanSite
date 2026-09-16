@@ -355,7 +355,7 @@ export const snackCards: MealCard[] = [
     cookTimeMinutes: 0,
     ingredients: [
       { name: 'Part-skim mozzarella string cheese', shoppingName: 'Mozzarella string cheese', quantity: 2, unit: 'each', section: 'dairy' },
-      { name: 'Whole-grain crackers (Triscuit)', shoppingName: 'Whole-grain crackers', quantity: 6, unit: 'each', section: 'pantry' },
+      { name: 'Whole-grain crackers (Triscuit)', shoppingName: 'Triscuit original crackers', quantity: 6, unit: 'each', section: 'pantry' },
       { name: 'Grapes', quantity: 151, unit: 'g', section: 'produce' },
     ],
     steps: [
@@ -363,13 +363,13 @@ export const snackCards: MealCard[] = [
       'Arrange the cheese with 6 whole-grain crackers and 151 g (about 1 cup) grapes on a plate.',
     ],
     nutrition: {
-      calories: { value: 384, confidence: 'verified' },
-      proteinG: { value: 18, confidence: 'verified' },
-      sodiumMg: { value: 573, confidence: 'verified' },
+      calories: { value: 384, confidence: 'estimated' },
+      proteinG: { value: 18, confidence: 'estimated' },
+      sodiumMg: { value: 573, confidence: 'estimated' },
       satFatG: { value: 7.5, confidence: 'estimated' },
-      carbsG: { value: 39, confidence: 'estimated' },
+      carbsG: { value: 48, confidence: 'estimated' },
     },
-    cooksNotes: 'Saturated fat runs a bit higher on this one from the cheese — good as an occasional plate rather than a daily one.',
+    cooksNotes: 'Saturated fat runs a bit higher on this one from the cheese — good as an occasional plate rather than a daily one. Reduced-sodium Triscuits and a lower-sodium string cheese can bring the sodium down if needed.',
   },
   {
     id: 'sk1-spiced-almonds',
