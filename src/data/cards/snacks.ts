@@ -115,8 +115,8 @@ export const snackCards: MealCard[] = [
     prepTimeMinutes: 5,
     cookTimeMinutes: 0,
     ingredients: [
-      { name: 'Hummus (Sabra Classic)', shoppingName: 'Hummus', quantity: 28, unit: 'g', section: 'other' },
-      { name: 'Whole-grain crackers (Triscuit)', shoppingName: 'Whole-grain crackers', quantity: 6, unit: 'each', section: 'pantry' },
+      { name: 'Hummus (Sabra Classic)', shoppingName: 'Sabra Classic hummus', quantity: 28, unit: 'g', section: 'other' },
+      { name: 'Whole-grain crackers (Triscuit)', shoppingName: 'Triscuit original crackers', quantity: 6, unit: 'each', section: 'pantry' },
       { name: 'Cucumber (sliced)', shoppingName: 'Cucumber', quantity: 104, unit: 'g', section: 'produce' },
     ],
     steps: [
@@ -125,13 +125,13 @@ export const snackCards: MealCard[] = [
       'Serve the hummus alongside 6 whole-grain crackers and the cucumber rounds for dipping and topping.',
     ],
     nutrition: {
-      calories: { value: 206, confidence: 'verified' },
-      proteinG: { value: 6, confidence: 'verified' },
-      sodiumMg: { value: 292, confidence: 'verified' },
+      calories: { value: 206, confidence: 'estimated' },
+      proteinG: { value: 6, confidence: 'estimated' },
+      sodiumMg: { value: 292, confidence: 'estimated' },
       satFatG: { value: 1.5, confidence: 'estimated' },
       carbsG: { value: 28, confidence: 'estimated' },
     },
-    cooksNotes: null,
+    cooksNotes: 'Slice the cucumber just before packing; cut too far ahead it releases water and turns the crackers soggy. Hummus and crackers can be portioned into containers up to 3 days ahead.',
   },
   {
     id: 'sk1-turkey-hummus-roll-ups',
