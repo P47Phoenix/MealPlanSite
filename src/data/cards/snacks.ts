@@ -167,9 +167,9 @@ export const snackCards: MealCard[] = [
     prepTimeMinutes: 8,
     cookTimeMinutes: 0,
     ingredients: [
-      { name: 'Tzatziki dip', shoppingName: 'Tzatziki dip', quantity: 60, unit: 'g', section: 'dairy' },
+      { name: "Tzatziki dip (Cedar's)", shoppingName: "Cedar's tzatziki", quantity: 60, unit: 'g', section: 'dairy' },
       { name: 'Cucumber (sliced)', shoppingName: 'Cucumber', quantity: 104, unit: 'g', section: 'produce' },
-      { name: 'Baby carrots', shoppingName: 'Carrots', quantity: 128, unit: 'g', section: 'produce' },
+      { name: 'Baby carrots', shoppingName: 'Baby carrots', quantity: 128, unit: 'g', section: 'produce' },
       { name: 'Cherry tomatoes', shoppingName: 'Cherry tomatoes', quantity: 149, unit: 'g', section: 'produce' },
     ],
     steps: [
@@ -178,13 +178,13 @@ export const snackCards: MealCard[] = [
       'Arrange the cucumber, carrots, and cherry tomatoes around the tzatziki for dipping.',
     ],
     nutrition: {
-      calories: { value: 135, confidence: 'verified' },
-      proteinG: { value: 5, confidence: 'verified' },
-      sodiumMg: { value: 375, confidence: 'verified' },
-      satFatG: { value: 1, confidence: 'estimated' },
-      carbsG: { value: 18, confidence: 'estimated' },
+      calories: { value: 141, confidence: 'estimated' },
+      proteinG: { value: 7.1, confidence: 'estimated' },
+      sodiumMg: { value: 313, confidence: 'estimated' },
+      satFatG: { value: 2.3, confidence: 'estimated' },
+      carbsG: { value: 27, confidence: 'estimated' },
     },
-    cooksNotes: 'A yogurt-based tzatziki (not sour-cream based) keeps this lighter and higher-protein.',
+    cooksNotes: "Cedar's Tzatziki (yogurt-based, not sour-cream based) keeps this lighter and higher-protein than a sour-cream dip.",
   },
   {
     id: 'sk1-cottage-cheese-pineapple-cup',
